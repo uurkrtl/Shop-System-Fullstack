@@ -25,10 +25,9 @@ function Navbar() {
                                 <Link to={'/'} className="nav-link active" aria-current="page">Startseite</Link>
                             </li>
                             <li className="nav-item dropdown">
-                                <Link to={'/'} className="nav-link dropdown-toggle" role="button"
+                                <Link to={'/'} className="nav-link dropdown-toggle text-decoration-none"
                                       data-bs-toggle="dropdown"
-                                      aria-expanded="false">Unsere Produkte
-                                </Link>
+                                      aria-expanded="false">Unsere Produkte</Link>
                                 <ul className="dropdown-menu">
                                     <li><Link to={'/'} className="dropdown-item">Oliven</Link></li>
                                     <li>
