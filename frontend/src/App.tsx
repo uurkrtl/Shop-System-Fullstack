@@ -1,11 +1,11 @@
-
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import Dashboard from "./layouts/Dashboard.tsx";
 function App() {
 
   return (
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        <Dashboard />
   )
 }
 
-export default App
+export default App;
