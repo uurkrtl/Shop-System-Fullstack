@@ -25,26 +25,27 @@ function Homepage() {
 
                 <div className="row">
                     <div className="col-lg-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="bd-placeholder-img" width="140" height="140"
-                             viewBox="0 0 24 24.001"
-                             id="food">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24.001" className="bd-placeholder-img"
+                             width="140" height="140">
                             <path fill="none" d="M0 0h24v24.001H0z"></path>
-                            <g fill="#757575">
+                            <g fill="#d45985" className="color757575 svgShape">
                                 <path
-                                    d="M20.708 2.294a1 1 0 00-1.707.707v19h2v-6h2a1 1 0 001-1c0-9.307-3.158-12.572-3.293-12.707zm.293 11.707V7.244c.487 1.6.908 3.808.987 6.757h-.987zM8.001 6.001v-4h-2v4c0 .737-.405 1.375-1 1.723V2.001h-2v5.723c-.595-.348-1-.985-1-1.723v-4h-2v4c0 1.858 1.28 3.41 3 3.858v12.142h2V9.859c1.721-.448 3-2 3-3.858z"></path>
+                                    d="M20.708 2.294a1 1 0 00-1.707.707v19h2v-6h2a1 1 0 001-1c0-9.307-3.158-12.572-3.293-12.707zm.293 11.707V7.244c.487 1.6.908 3.808.987 6.757h-.987zM8.001 6.001v-4h-2v4c0 .737-.405 1.375-1 1.723V2.001h-2v5.723c-.595-.348-1-.985-1-1.723v-4h-2v4c0 1.858 1.28 3.41 3 3.858v12.142h2V9.859c1.721-.448 3-2 3-3.858z"
+                                    fill="#d85b53" className="color000000 svgShape"></path>
                                 <path
-                                    d="M12.001 9.001c-3.309 0-6 2.691-6 6s2.691 6 6 6 6-2.691 6-6-2.691-6-6-6zm0 9s-3-2-3-3.5a1.5 1.5 0 0 1 3 0 1.5 1.5 0 0 1 3 0c0 1.5-3 3.5-3 3.5z"></path>
+                                    d="M12.001 9.001c-3.309 0-6 2.691-6 6s2.691 6 6 6 6-2.691 6-6-2.691-6-6-6zm0 9s-3-2-3-3.5a1.5 1.5 0 0 1 3 0 1.5 1.5 0 0 1 3 0c0 1.5-3 3.5-3 3.5z"
+                                    fill="#d85b53" className="color000000 svgShape"></path>
                             </g>
-                            <title>Unsere Produkte</title>
                         </svg>
 
                         <h2 className="fw-normal">Unsere Produkte</h2>
                         <p>Entdecken Sie die exquisite Auswahl an feinsten Delikatessen in unserem Sortiment.</p>
-                        <p><Link to={'/'} className="btn btn-secondary">View details »</Link></p>
+                        <p><Link to={'/products'} className="btn btn-secondary">Details anzeigen »</Link></p>
                     </div>
 
                     <div className="col-lg-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="bd-placeholder-img" width="140" height="140" fill="none" viewBox="0 0 96 96"
+                        <svg xmlns="http://www.w3.org/2000/svg" className="bd-placeholder-img" width="140" height="140"
+                             fill="none" viewBox="0 0 96 96"
                              id="room-service">
                             <path fill="#FFF1CF" stroke="#FF8A00" strokeLinecap="round" strokeWidth="5"
                                   d="M47 18C34.067 18 23.5233 28.6559 23.0189 41.9989C22.998 42.5508 23.4477 43 24 43L70 43C70.5523 43 71.002 42.5508 70.9811 41.9989C70.4767 28.6559 59.933 18 47 18Z"></path>
@@ -65,7 +66,7 @@ function Homepage() {
                         <p>Unser Partyservice bietet Ihnen eine exquisite Auswahl an feinsten Delikatessen und
                             kulinarischen Köstlichkeiten, um Ihre Veranstaltung zu einem echten Gaumenschmaus zu
                             machen.</p>
-                        <p><Link to={'/'} className="btn btn-secondary">View details »</Link></p>
+                        <p><Link to={'/'} className="btn btn-secondary">Details anzeigen »</Link></p>
                     </div>
 
                     <div className="col-lg-4">
@@ -78,7 +79,7 @@ function Homepage() {
 
                         <h2 className="fw-normal">Unser Standort</h2>
                         <p>Besuchen Sie uns in Kerpen! Tauchen Sie ein in unsere exquisite Auswahl an Delikatessen und erleben Sie Qualität und Geschmack in einem Ambiente, das zum Verweilen einlädt.</p>
-                        <p><Link to={'/'} className="btn btn-secondary">View details »</Link></p>
+                        <p><Link to={'/'} className="btn btn-secondary">Details anzeigen »</Link></p>
                     </div>
                 </div>
 
