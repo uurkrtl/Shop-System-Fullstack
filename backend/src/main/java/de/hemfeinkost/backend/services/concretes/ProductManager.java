@@ -1,5 +1,6 @@
 package de.hemfeinkost.backend.services.concretes;
 
+import de.hemfeinkost.backend.core.exceptions.types.RecordNotFoundException;
 import de.hemfeinkost.backend.core.mappers.ModelMapperService;
 import de.hemfeinkost.backend.models.Category;
 import de.hemfeinkost.backend.models.Product;
@@ -9,6 +10,7 @@ import de.hemfeinkost.backend.services.abstracts.ProductService;
 import de.hemfeinkost.backend.services.dtos.requests.ProductRequest;
 import de.hemfeinkost.backend.services.dtos.responses.ProductCreatedResponse;
 import de.hemfeinkost.backend.services.messages.CategoryMessage;
+import de.hemfeinkost.backend.services.messages.ProductMessage;
 import de.hemfeinkost.backend.services.rules.ProductBusinessRules;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,13 @@ public class ProductManager implements ProductService {
     private final CategoryRepository categoryRepository;
     private final ModelMapperService modelMapperService;
     private final ProductBusinessRules productBusinessRules;
+
+    @Override
+    public ProductCreatedResponse getProductById(Long id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new RecordNotFoundException(ProductMessage.PRODUCT_NOT_FOUND));
+        return modelMapperService.forResponse().map(product, ProductCreatedResponse.class);
+    }
 
     @Override
     public ProductCreatedResponse addProduct(ProductRequest productRequest) {

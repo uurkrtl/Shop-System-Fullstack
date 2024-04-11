@@ -11,6 +11,7 @@ public class ProductCreatedResponse {
     private long id;
     private String name;
     private String description;
+    private String ingredients;
     private double price;
     private String imageUrl;
     private long readCount;

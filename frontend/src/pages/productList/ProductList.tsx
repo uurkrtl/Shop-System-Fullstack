@@ -59,7 +59,7 @@ function ProductList() {
 
                                     {category.products.map((product) => {
                                         return (
-                                            <Link to={'/'} className="text-decoration-none" key={product.id}>
+                                            <Link to={`/products/${product.id}`} className="text-decoration-none" key={product.id}>
                                                 <div className="col">
                                                     <div className="card shadow-sm mt-3">
                                                         <img className="bd-placeholder-img card-img-top thumb-img" width="100%"
