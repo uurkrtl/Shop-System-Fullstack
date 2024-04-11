@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 public class CategoryRequest {
     @Size(min = 2, max = 50, message = "Der Name muss zwischen 2 und 50 Zeichen lang sein")
     private String name;
-    @Size(max = 150, message = "Die Beschreibung darf maximal 150 Zeichen lang sein")
+    @Size(max = 1000, message = "Die Beschreibung darf maximal 1000 Zeichen lang sein")
     private String description;
     private String imageUrl;
 }

@@ -12,5 +12,7 @@ import java.util.List;
 public class CategoryGetAllResponse {
     private long id;
     private String name;
+    private String description;
+    private String imageUrl;
     private List<ProductGetAllResponse> products;
 }

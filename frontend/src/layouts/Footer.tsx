@@ -21,7 +21,7 @@ function Footer() {
                     </Link>
                 </div>
 
-                <ul className="nav col-md-4 mt-3 justify-content-end  d-flex">
+                <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
                     <li className="ms-3">
                         <Link to={`https://www.instagram.com/hemfeinkost/`}
                               className="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1" target={'_blank'}>
