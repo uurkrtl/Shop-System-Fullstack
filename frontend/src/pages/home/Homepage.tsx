@@ -79,7 +79,7 @@ function Homepage() {
 
                         <h2 className="fw-normal">Unser Standort</h2>
                         <p>Besuchen Sie uns in Kerpen! Tauchen Sie ein in unsere exquisite Auswahl an Delikatessen und erleben Sie Qualität und Geschmack in einem Ambiente, das zum Verweilen einlädt.</p>
-                        <p><Link to={'/'} className="btn btn-secondary">Details anzeigen »</Link></p>
+                        <p><Link to={'/'} className="btn btn-secondary mb-2">Details anzeigen »</Link></p>
                     </div>
                 </div>
 
@@ -91,7 +91,7 @@ function Homepage() {
                             className="text-body-secondary">Sie sind bei uns genau richtig.</span></h2>
                         <p className="lead">Planen Sie eine besondere Feier oder Veranstaltung und suchen nach kulinarischen Köstlichkeiten,
                         die Ihre Gäste begeistern werden? Dann sind Sie bei uns genau richtig!</p>
-                        <Link to={'/'} className="btn btn-secondary">Mehr erfahren »</Link>
+                        <Link to={'/'} className="btn btn-secondary mb-3">Mehr erfahren »</Link>
                     </div>
                     <div className="col-md-5">
                         <img src="https://i.ibb.co/tMJkMwS/placeholder-img-1.jpg" width="500" height="500" alt="Party service"
@@ -107,10 +107,11 @@ function Homepage() {
                             className="text-body-secondary">unsere erlesenen Feinkostprodukte.</span></h2>
                         <p className="lead">Unser Sortiment an Feinkostprodukten ist eine Hommage an die Kunst des guten Geschmacks.
                             Bei uns finden Sie sorgfältig ausgewählte Produkte, die Ihre Sinne verzaubern werden.</p>
-                        <Link to={'/'} className="btn btn-secondary">Unsere Produkte »</Link>
+                        <Link to={'/products'} className="btn btn-secondary mb-3">Unsere Produkte »</Link>
                     </div>
                     <div className="col-md-5 order-md-1">
-                        <img src="https://i.ibb.co/hK2FHHk/unsere-produkte-1.jpg" width="500" height="500" alt="Unsere Produkte"/>
+                        <img src="https://i.ibb.co/hK2FHHk/unsere-produkte-1.jpg" width="500" height="500" alt="Unsere Produkte"
+                             className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"/>
                     </div>
                 </div>
 

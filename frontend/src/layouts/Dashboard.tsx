@@ -3,6 +3,7 @@ import Homepage from "../pages/home/Homepage.tsx";
 import Navbar from "./Navbar.tsx";
 import Footer from "./Footer.tsx";
 import ProductList from "../pages/productList/ProductList.tsx";
+import ProductDetail from "../pages/productDetail/ProductDetail.tsx";
 
 
 function Dashboard() {
@@ -13,6 +14,7 @@ function Dashboard() {
                 <Routes>
                     <Route path={'/'} element={<Homepage/>}/>
                     <Route path={'/products'} element={<ProductList/>}/>
+                    <Route path={'/products/:id'} element={<ProductDetail/>}/>
                 </Routes>
             </div>
             <Footer/>

@@ -15,6 +15,8 @@ public class ProductRequest {
     private String name;
     @Size(max = 1000, message = "Die Beschreibung darf maximal 1000 Zeichen lang sein")
     private String description;
+    @Size(max = 1000, message = "Die Zutatenliste darf maximal 1000 Zeichen lang sein")
+    private String ingredients;
     @Positive(message = "Der Preis muss größer als 0 sein")
     private double price;
     private String imageUrl;

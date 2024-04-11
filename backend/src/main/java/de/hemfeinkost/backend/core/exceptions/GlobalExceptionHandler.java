@@ -1,6 +1,7 @@
 package de.hemfeinkost.backend.core.exceptions;
 
 import de.hemfeinkost.backend.core.exceptions.types.DuplicateRecordException;
+import de.hemfeinkost.backend.core.exceptions.types.RecordNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.ObjectError;
@@ -23,6 +24,17 @@ public class GlobalExceptionHandler {
                 .timestamp(LocalDateTime.now())
                 .build();
         return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(RecordNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleRecordNotFoundException(RecordNotFoundException ex, WebRequest request) {
+        ErrorResponse errorResponse = ErrorResponse.builder()
+                .apiPath(request.getDescription(false))
+                .status(HttpStatus.BAD_REQUEST)
+                .message(ex.getMessage())
+                .timestamp(LocalDateTime.now())
+                .build();
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler
