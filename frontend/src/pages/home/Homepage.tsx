@@ -79,7 +79,7 @@ function Homepage() {
 
                         <h2 className="fw-normal">Unser Standort</h2>
                         <p>Besuchen Sie uns in Kerpen! Tauchen Sie ein in unsere exquisite Auswahl an Delikatessen und erleben Sie Qualität und Geschmack in einem Ambiente, das zum Verweilen einlädt.</p>
-                        <p><Link to={'/'} className="btn btn-secondary mb-2">Details anzeigen »</Link></p>
+                        <p><Link to={'/contact'} className="btn btn-secondary mb-2">Details anzeigen »</Link></p>
                     </div>
                 </div>
 
