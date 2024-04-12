@@ -59,7 +59,7 @@ function Navbar() {
                                 </ul>
                             </li>
                             <li className="nav-item">
-                            <Link to={'/'} className="nav-link">Standort</Link>
+                            <Link to={'/contact'} className="nav-link">Standort</Link>
                             </li>
                         </ul>
                         <form className="d-flex" role="search">
