@@ -13,8 +13,8 @@ function Dashboard() {
             <div className="mt-5">
                 <Routes>
                     <Route path={'/'} element={<Homepage/>}/>
-                    <Route path={'/products'} element={<ProductList/>}/>
-                    <Route path={'/products/:id'} element={<ProductDetail/>}/>
+                    <Route path={'/products/:categoryId?'} element={<ProductList/>}/>
+                    <Route path={'/products/detail/:id'} element={<ProductDetail/>}/>
                 </Routes>
             </div>
             <Footer/>

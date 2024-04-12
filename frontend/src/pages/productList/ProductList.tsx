@@ -2,7 +2,7 @@ import './ProductList.css';
 import CategoryService from "../../services/CategoryService.ts";
 import {useEffect, useState} from "react";
 import {Category} from "../../types/Category.ts";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {Unit} from "../../types/enums/Unit.ts";
 
 const categoryService = new CategoryService();
@@ -10,6 +10,7 @@ function ProductList() {
     const [categories, setCategories] = useState<Category[]>([]);
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState<string>('');
+    const { categoryId = '' } = useParams();
     const truncateText = (text: string, maxLength: number) => {
         if (text.length > maxLength) {
             return text.substring(0, maxLength - 3) + '...';
@@ -18,6 +19,16 @@ function ProductList() {
     };
 
     useEffect(() => {
+        if (categoryId) {
+            categoryService.getCategoryById(Number(categoryId)).then((response) => {
+                setCategories([response.data]);
+                setLoading(false);
+            }).catch(error => {
+                setErrorMessage(`Fehler beim Abrufen von Produkte: ${error.message}`);
+                setLoading(false);
+                setCategories([]);
+            });
+        }else {
         categoryService.getAllCategories().then((response) => {
             setCategories(response.data);
             setLoading(false);
@@ -25,8 +36,8 @@ function ProductList() {
             setErrorMessage(`Fehler beim Abrufen von Produkte: ${error.message}`);
             setLoading(false);
             setCategories([]);
-        });
-    }, []);
+        });}
+    }, [categoryId]);
 
     if (loading) {
         return <div className={'container'}>
@@ -59,7 +70,7 @@ function ProductList() {
 
                                     {category.products.map((product) => {
                                         return (
-                                            <Link to={`/products/${product.id}`} className="text-decoration-none" key={product.id}>
+                                            <Link to={`/products/detail/${product.id}`} className="text-decoration-none" key={product.id}>
                                                 <div className="col">
                                                     <div className="card shadow-sm mt-3">
                                                         <img className="bd-placeholder-img card-img-top thumb-img" width="100%"
