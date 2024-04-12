@@ -52,7 +52,8 @@ function Contact() {
                 <div className="row g-0 justify-content-center">
                     <div className="col-lg-12 iframe-full-height-wrap">
                         <iframe className="iframe-full-height" width="100%" height="450"
-                                src="https://maps.google.com/maps?width=100%&amp;height=100%&amp;hl=en&amp;q=Hem Feinkost, 50171 Kerpen&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+                                src="https://maps.google.com/maps?width=100%&amp;height=100%&amp;hl=en&amp;q=Hem Feinkost, 50171 Kerpen&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                                title="Google Maps - Hem Feinkost, 50171 Kerpen">
                         </iframe>
                     </div>
                 </div>
