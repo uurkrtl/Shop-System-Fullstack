@@ -47,8 +47,8 @@ function Navbar() {
                                 <ul className="dropdown-menu">
                                     {categories.map((category) => {
                                         return (
-                                            <li key={category.id}><Link to={'/'}
-                                                                        className="dropdown-item">{category.name}</Link>
+                                            <li key={category.id}>
+                                                <Link to={`/products/${category.id}`} className="dropdown-item">{category.name}</Link>
                                             </li>
                                         );
                                     })}

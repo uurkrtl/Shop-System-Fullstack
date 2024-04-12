@@ -1,5 +1,6 @@
 package de.hemfeinkost.backend.services.concretes;
 
+import de.hemfeinkost.backend.core.exceptions.types.RecordNotFoundException;
 import de.hemfeinkost.backend.core.mappers.ModelMapperService;
 import de.hemfeinkost.backend.models.Category;
 import de.hemfeinkost.backend.repositories.CategoryRepository;
@@ -7,6 +8,7 @@ import de.hemfeinkost.backend.services.abstracts.CategoryService;
 import de.hemfeinkost.backend.services.dtos.requests.CategoryRequest;
 import de.hemfeinkost.backend.services.dtos.responses.CategoryCreatedResponse;
 import de.hemfeinkost.backend.services.dtos.responses.CategoryGetAllResponse;
+import de.hemfeinkost.backend.services.messages.CategoryMessage;
 import de.hemfeinkost.backend.services.rules.CategoryBusinessRules;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,13 @@ public class CategoryManager implements CategoryService {
         return categories.stream()
                 .map(category -> modelMapperService.forResponse()
                         .map(category, CategoryGetAllResponse.class)).toList();
+    }
+
+    @Override
+    public CategoryCreatedResponse getCategoryById(Long id) {
+        Category category = categoryRepository.findById(id)
+                .orElseThrow(() -> new RecordNotFoundException(CategoryMessage.CATEGORY_NAME_NOT_FOUND));
+        return modelMapperService.forResponse().map(category, CategoryCreatedResponse.class);
     }
 
     @Override

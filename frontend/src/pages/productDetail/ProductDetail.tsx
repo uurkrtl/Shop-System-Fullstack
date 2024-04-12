@@ -65,7 +65,7 @@ function ProductDetail() {
                                 </Link>
                             </li>
                             <li className="breadcrumb-item">
-                                <Link to={`/`} className="link-body-emphasis fw-semibold text-decoration-none">{product.categoryName}</Link>
+                                <Link to={`/products/${product.categoryId}`} className="link-body-emphasis fw-semibold text-decoration-none">{product.categoryName}</Link>
                             </li>
                             <li className="breadcrumb-item active" aria-current="page">
                                 {product.name}
