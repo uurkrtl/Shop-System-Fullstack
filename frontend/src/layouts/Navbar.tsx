@@ -48,7 +48,8 @@ function Navbar() {
                                     {categories.map((category) => {
                                         return (
                                             <li key={category.id}>
-                                                <Link to={`/products/${category.id}`} className="dropdown-item">{category.name}</Link>
+                                                <Link to={`/products/${category.id}`}
+                                                      className="dropdown-item">{category.name}</Link>
                                             </li>
                                         );
                                     })}
@@ -59,7 +60,10 @@ function Navbar() {
                                 </ul>
                             </li>
                             <li className="nav-item">
-                            <Link to={'/contact'} className="nav-link">Standort</Link>
+                                <Link to={'/contact'} className="nav-link">Standort</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to={'/party-platter'} className="nav-link">Partyservice</Link>
                             </li>
                         </ul>
                         <form className="d-flex" role="search">

@@ -11,5 +11,6 @@ public class PartyPlatterGetAllResponse {
     private long id;
     private String name;
     private String description;
+    private double price;
     private String size;
 }

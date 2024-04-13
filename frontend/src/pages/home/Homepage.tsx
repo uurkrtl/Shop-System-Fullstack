@@ -13,7 +13,7 @@ function Homepage() {
                 <div className="carousel-inner">
                     <div className="carousel-item active">
                         <img
-                            src="https://i.ibb.co/QF44DWM/Whats-App-Image-2024-04-09-at-15-47-36-2.jpg"
+                            src="https://i.ibb.co/jhZdSzZ/Whats-App-Image-2024-04-13-at-20-05-22.jpg"
                             className="d-block w-100" alt="Hem Feinkost"/>
                         <div className="container">
                         </div>
@@ -66,7 +66,7 @@ function Homepage() {
                         <p>Unser Partyservice bietet Ihnen eine exquisite Auswahl an feinsten Delikatessen und
                             kulinarischen Köstlichkeiten, um Ihre Veranstaltung zu einem echten Gaumenschmaus zu
                             machen.</p>
-                        <p><Link to={'/'} className="btn btn-secondary">Details anzeigen »</Link></p>
+                        <p><Link to={'party-platter'} className="btn btn-secondary">Details anzeigen »</Link></p>
                     </div>
 
                     <div className="col-lg-4">
@@ -91,7 +91,7 @@ function Homepage() {
                             className="text-body-secondary">Sie sind bei uns genau richtig.</span></h2>
                         <p className="lead">Planen Sie eine besondere Feier oder Veranstaltung und suchen nach kulinarischen Köstlichkeiten,
                         die Ihre Gäste begeistern werden? Dann sind Sie bei uns genau richtig!</p>
-                        <Link to={'/'} className="btn btn-secondary mb-3">Mehr erfahren »</Link>
+                        <Link to={'/party-platter'} className="btn btn-secondary mb-3">Mehr erfahren »</Link>
                     </div>
                     <div className="col-md-5">
                         <img src="https://i.ibb.co/tMJkMwS/placeholder-img-1.jpg" width="500" height="500" alt="Party service"
