@@ -13,4 +13,5 @@ public class PartyPlatterGetAllResponse {
     private String description;
     private double price;
     private String size;
+    private boolean isActive;
 }

@@ -6,4 +6,7 @@ export type Category = {
     description: string;
     imageUrl: string;
     products: Product[];
+    active: boolean;
+    createdAt: Date;
+    updatedAt: Date;
 }

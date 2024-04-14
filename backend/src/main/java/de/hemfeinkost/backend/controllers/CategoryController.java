@@ -21,6 +21,11 @@ public class CategoryController {
         return categoryService.getAllCategories();
     }
 
+    @GetMapping("/active")
+    public List<CategoryGetAllResponse> getActiveCategories() {
+        return categoryService.getActiveCategories();
+    }
+
     @GetMapping("/{id}")
     public CategoryCreatedResponse getCategoryById(@PathVariable Long id) {
         return categoryService.getCategoryById(id);

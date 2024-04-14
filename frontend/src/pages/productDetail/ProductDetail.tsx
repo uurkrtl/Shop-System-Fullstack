@@ -22,6 +22,9 @@ function ProductDetail() {
         unit: '',
         categoryId: 0,
         categoryName: '',
+        active: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
     });
 
     useEffect(() => {

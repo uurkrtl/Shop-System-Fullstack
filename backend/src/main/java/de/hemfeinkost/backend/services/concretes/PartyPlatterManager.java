@@ -10,6 +10,7 @@ import de.hemfeinkost.backend.services.dtos.responses.PartyPlatterGetAllResponse
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -27,8 +28,18 @@ public class PartyPlatterManager implements PartyPlatterService {
     }
 
     @Override
+    public List<PartyPlatterGetAllResponse> getActivePartyPlatters() {
+        List<PartyPlatter> partyPlatters = partyPlatterRepository.findAllByIsActiveTrue();
+        return partyPlatters.stream()
+                .map(partyPlatter -> modelMapperService.forResponse()
+                        .map(partyPlatter, PartyPlatterGetAllResponse.class)).toList();
+    }
+
+    @Override
     public PartyPlatterCreatedResponse addPartyPlatter(PartyPlatterRequest partyPlatterRequest) {
         PartyPlatter partyPlatter = modelMapperService.forRequest().map(partyPlatterRequest, PartyPlatter.class);
+        partyPlatter.setActive(true);
+        partyPlatter.setCreatedAt(LocalDateTime.now());
         partyPlatter = partyPlatterRepository.save(partyPlatter);
         return modelMapperService.forResponse().map(partyPlatter, PartyPlatterCreatedResponse.class);
     }

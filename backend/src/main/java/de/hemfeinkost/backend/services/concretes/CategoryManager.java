@@ -13,6 +13,7 @@ import de.hemfeinkost.backend.services.rules.CategoryBusinessRules;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -25,6 +26,14 @@ public class CategoryManager implements CategoryService {
     @Override
     public List<CategoryGetAllResponse> getAllCategories() {
         List<Category> categories = categoryRepository.findAll();
+        return categories.stream()
+                .map(category -> modelMapperService.forResponse()
+                        .map(category, CategoryGetAllResponse.class)).toList();
+    }
+
+    @Override
+    public List<CategoryGetAllResponse> getActiveCategories() {
+        List<Category> categories = categoryRepository.findAllByIsActiveTrue();
         return categories.stream()
                 .map(category -> modelMapperService.forResponse()
                         .map(category, CategoryGetAllResponse.class)).toList();
@@ -44,6 +53,8 @@ public class CategoryManager implements CategoryService {
         if (category.getImageUrl().isEmpty()) {
             category.setImageUrl("https://img.freepik.com/vektoren-premium/foto-kommt-bald-bilderrahmen_268834-398.jpg");
         }
+        category.setActive(true);
+        category.setCreatedAt(LocalDateTime.now());
         category = categoryRepository.save(category);
         return modelMapperService.forResponse().map(category, CategoryCreatedResponse.class);
     }

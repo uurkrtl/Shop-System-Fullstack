@@ -9,4 +9,7 @@ export type Product = {
     unit: string;
     categoryId: number;
     categoryName: string;
+    active: boolean;
+    createdAt: Date;
+    updatedAt: Date;
 }

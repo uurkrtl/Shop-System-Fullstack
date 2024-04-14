@@ -22,6 +22,11 @@ public class PartyPlatterController {
         return partyPlatterService.getAllPartyPlatters();
     }
 
+    @GetMapping("/active")
+    public List<PartyPlatterGetAllResponse> getActivePartyPlatters() {
+        return partyPlatterService.getActivePartyPlatters();
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public PartyPlatterCreatedResponse addPartyPlatter(@Valid @RequestBody PartyPlatterRequest partyPlatterRequest) {

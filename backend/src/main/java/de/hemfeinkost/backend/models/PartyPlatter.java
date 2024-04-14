@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Table(name = "party-platters")
 @Entity
 @Data
@@ -27,4 +29,13 @@ public class PartyPlatter {
 
     @Column(name = "price")
     private double price;
+
+    @Column(name = "active")
+    private boolean isActive;
+
+    @Column(name = "created-at")
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated-at")
+    private LocalDateTime updatedAt;
 }

@@ -22,8 +22,13 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
+    @GetMapping("/active")
+    public List<ProductGetAllResponse> getActiveProducts() {
+        return productService.getActiveProducts();
+    }
+
     @GetMapping("/{id}")
-    public ProductCreatedResponse getProductById(@PathVariable Long id) {
+    public ProductCreatedResponse getProductById(@PathVariable long id) {
         return productService.getProductById(id);
     }
 
@@ -31,5 +36,10 @@ public class ProductController {
     @ResponseStatus(HttpStatus.CREATED)
     public ProductCreatedResponse addProduct(@Valid @RequestBody ProductRequest productRequest) {
         return productService.addProduct(productRequest);
+    }
+
+    @PostMapping("/status/{id}")
+    public ProductCreatedResponse changeProductStatus(@PathVariable long id, @RequestParam boolean status) {
+        return productService.changeProductStatus(id, status);
     }
 }
