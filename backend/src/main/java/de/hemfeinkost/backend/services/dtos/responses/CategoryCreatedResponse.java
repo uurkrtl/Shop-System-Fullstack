@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -14,5 +14,7 @@ public class CategoryCreatedResponse {
     private String name;
     private String description;
     private String imageUrl;
-    private List<ProductGetAllResponse> products;
+    private boolean isActive;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 }

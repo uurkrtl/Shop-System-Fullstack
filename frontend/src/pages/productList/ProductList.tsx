@@ -4,10 +4,14 @@ import {useEffect, useState} from "react";
 import {Category} from "../../types/Category.ts";
 import {Link, useParams} from "react-router-dom";
 import {Unit} from "../../types/enums/Unit.ts";
+import ProductService from "../../services/ProductService.ts";
+import {Product} from "../../types/Product.ts";
 
 const categoryService = new CategoryService();
+const productService = new ProductService();
 function ProductList() {
     const [categories, setCategories] = useState<Category[]>([]);
+    const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState<string>('');
     const { categoryId = '' } = useParams();
@@ -23,13 +27,14 @@ function ProductList() {
             categoryService.getCategoryById(Number(categoryId)).then((response) => {
                 setCategories([response.data]);
                 setLoading(false);
+                setErrorMessage('')
             }).catch(error => {
                 setErrorMessage(`Fehler beim Abrufen von Produkte: ${error.message}`);
                 setLoading(false);
                 setCategories([]);
             });
         }else {
-        categoryService.getAllCategories().then((response) => {
+        categoryService.getActiveCategories().then((response) => {
             setCategories(response.data);
             setLoading(false);
         }).catch(error => {
@@ -38,6 +43,12 @@ function ProductList() {
             setCategories([]);
         });}
     }, [categoryId]);
+
+    useEffect(() => {
+        productService.getActiveProducts().then((response) => {
+            setProducts(response.data);
+        });
+    }, []);
 
     if (loading) {
         return <div className={'container'}>
@@ -68,7 +79,7 @@ function ProductList() {
 
                                 <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
 
-                                    {category.products.map((product) => {
+                                    {products.filter(product => product.categoryName === category.name).map((product) => {
                                         return (
                                             <Link to={`/products/detail/${product.id}`} className="text-decoration-none" key={product.id}>
                                                 <div className="col">
@@ -95,15 +106,14 @@ function ProductList() {
                                         )
                                     })}
 
-                                    {errorMessage && (
-                                        <div className="alert alert-danger" role="alert">
-                                            {errorMessage}
-                                        </div>
-                                    )}
-
                                 </div>
                             </div>
                         </div>
+                        {errorMessage && (
+                            <div className="alert alert-danger" role="alert">
+                                {errorMessage}
+                            </div>
+                        )}
                     </div>
                 )
             })}

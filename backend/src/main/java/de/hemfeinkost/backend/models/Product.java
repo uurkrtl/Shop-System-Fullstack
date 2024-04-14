@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Table(name = "products")
 @Entity
 @Data
@@ -41,4 +43,13 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @Column(name = "active")
+    private boolean isActive;
+
+    @Column(name = "created-at")
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated-at")
+    private LocalDateTime updatedAt;
 }

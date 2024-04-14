@@ -17,4 +17,5 @@ public class ProductGetAllResponse {
     private String unit;
     private long categoryId;
     private String categoryName;
+    private boolean isActive;
 }

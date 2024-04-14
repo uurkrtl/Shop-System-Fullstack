@@ -10,7 +10,7 @@ function PartyPlatterList() {
     const [errorMessage, setErrorMessage] = useState<string>('');
 
     useEffect(() => {
-            partyPlatterService.getAllPartyPlatters().then((response) => {
+            partyPlatterService.getActivePartyPlatters().then((response) => {
                 setPartyPlatters(response.data);
                 setLoading(false);
             }).catch(error => {

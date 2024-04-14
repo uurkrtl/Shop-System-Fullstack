@@ -15,4 +15,5 @@ public class CategoryGetAllResponse {
     private String description;
     private String imageUrl;
     private List<ProductGetAllResponse> products;
+    private boolean isActive;
 }

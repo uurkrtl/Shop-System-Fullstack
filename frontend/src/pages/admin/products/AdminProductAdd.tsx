@@ -24,7 +24,10 @@ function AdminProductAdd() {
         readCount: 0,
         unit: '',
         categoryId: 0,
-        categoryName: ''
+        categoryName: '',
+        active: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
     });
 
     useEffect(() => {

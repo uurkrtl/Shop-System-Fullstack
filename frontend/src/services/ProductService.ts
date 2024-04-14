@@ -6,6 +6,10 @@ export default class ProductService {
         return axios.get('/api/products')
     }
 
+    getActiveProducts() {
+        return axios.get('/api/products/active')
+    }
+
     getProductById(id: number) {
         return axios.get(`/api/products/${id}`)
     }

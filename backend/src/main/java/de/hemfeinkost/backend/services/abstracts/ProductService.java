@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface ProductService {
     List<ProductGetAllResponse> getAllProducts();
-    ProductCreatedResponse getProductById(Long id);
+    List<ProductGetAllResponse> getActiveProducts();
+    ProductCreatedResponse getProductById(long id);
     ProductCreatedResponse addProduct(ProductRequest productRequest);
+    ProductCreatedResponse changeProductStatus(long id, boolean status);
 }

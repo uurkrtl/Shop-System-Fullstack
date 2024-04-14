@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface PartyPlatterService {
     List<PartyPlatterGetAllResponse> getAllPartyPlatters();
+    List<PartyPlatterGetAllResponse> getActivePartyPlatters();
     PartyPlatterCreatedResponse addPartyPlatter(PartyPlatterRequest partyPlatter);
 }

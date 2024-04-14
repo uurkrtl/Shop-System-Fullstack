@@ -1,12 +1,11 @@
 package de.hemfeinkost.backend.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Table(name = "categories")
 @Entity
@@ -28,7 +27,12 @@ public class Category {
     @Column(name = "imageUrl")
     private String imageUrl;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "category", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("category")
-    private List<Product> products;
+    @Column(name = "active")
+    private boolean isActive;
+
+    @Column(name = "created-at")
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated-at")
+    private LocalDateTime updatedAt;
 }

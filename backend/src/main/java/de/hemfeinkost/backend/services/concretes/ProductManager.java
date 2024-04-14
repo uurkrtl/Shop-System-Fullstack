@@ -17,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -36,7 +37,15 @@ public class ProductManager implements ProductService {
     }
 
     @Override
-    public ProductCreatedResponse getProductById(Long id) {
+    public List<ProductGetAllResponse> getActiveProducts() {
+        List<Product> products = productRepository.findAllByIsActive(true, Sort.by(Sort.Direction.ASC, "name"));
+        return products.stream()
+                .map(product -> modelMapperService.forResponse().map(product, ProductGetAllResponse.class))
+                .toList();
+    }
+
+    @Override
+    public ProductCreatedResponse getProductById(long id) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new RecordNotFoundException(ProductMessage.PRODUCT_NOT_FOUND));
         return modelMapperService.forResponse().map(product, ProductCreatedResponse.class);
@@ -50,9 +59,20 @@ public class ProductManager implements ProductService {
                 .orElseThrow(() -> new RuntimeException(CategoryMessage.CATEGORY_NAME_NOT_FOUND));
         product.setCategory(selectedCategory);
         product.setReadCount(0);
+        product.setActive(true);
+        product.setCreatedAt(LocalDateTime.now());
         if (product.getImageUrl().isEmpty()) {
             product.setImageUrl("https://img.freepik.com/vektoren-premium/foto-kommt-bald-bilderrahmen_268834-398.jpg");
         }
+        product = productRepository.save(product);
+        return modelMapperService.forResponse().map(product, ProductCreatedResponse.class);
+    }
+
+    @Override
+    public ProductCreatedResponse changeProductStatus(long id, boolean status) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new RecordNotFoundException(ProductMessage.PRODUCT_NOT_FOUND));
+        product.setActive(status);
         product = productRepository.save(product);
         return modelMapperService.forResponse().map(product, ProductCreatedResponse.class);
     }

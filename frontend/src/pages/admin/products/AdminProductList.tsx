@@ -37,7 +37,6 @@ function AdminProductList() {
 
     const handleCategorySelect = (e: React.MouseEvent<HTMLInputElement>) => {
         const target = e.target as HTMLElement;
-        setFilterByName("");
         if (target.id === "allProducts") {
             setProductByCategory(products)
         }else {
@@ -76,23 +75,29 @@ function AdminProductList() {
                 <Link to={"/admin/products/add"} className="btn btn-outline-secondary">Produkt erstellen</Link>
             </div>
 
-            <div className="form-check form-check-inline mb-3">
-                <input className="form-check-input" type="radio" name="inlineRadioOptions" id="allProducts"
-                       value="allProducts" onClick={handleCategorySelect} defaultChecked/>
-                <label className="form-check-label" htmlFor="allProducts">Alle Produkte</label>
+            <div className="input-group">
+                <div className="form-check-inline">
+                    <p className="form-check-label mx-1">Kategorie wählen:</p>
+                </div>
+
+                <div className="form-check form-check-inline mb-3">
+                    <input className="form-check-input" type="radio" name="inlineRadioOptions" id="allProducts"
+                           value="allProducts" onClick={handleCategorySelect} defaultChecked/>
+                    <label className="form-check-label" htmlFor="allProducts">Alle Produkte</label>
+                </div>
+
+                {categories.map((category) => {
+                    return (
+                        <div className="form-check form-check-inline mb-3" key={category.id}>
+                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id={category.name}
+                                   value={category.name} onClick={handleCategorySelect}/>
+                            <label className="form-check-label" htmlFor={category.name}>{category.name}</label>
+                        </div>
+                    );
+                })}
             </div>
 
-            {categories.map((category) => {
-                return (
-                    <div className="form-check form-check-inline mb-3" key={category.id}>
-                        <input className="form-check-input" type="radio" name="inlineRadioOptions" id={category.name}
-                               value={category.name} onClick={handleCategorySelect}/>
-                        <label className="form-check-label" htmlFor={category.name}>{category.name}</label>
-                    </div>
-                );
-            })}
-
-            <div className="input-group">
+            <div className="input-group mb-2">
                 <span className="input-group-text" id="basic-addon3">Schreiben einen Namensfilter</span>
                 <input
                     type="text"
@@ -109,6 +114,7 @@ function AdminProductList() {
                     <th scope="col">Name</th>
                     <th scope="col">Verkaufspreis</th>
                     <th scope="col">Kategoriename</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Detail</th>
                 </tr>
                 </thead>
@@ -116,13 +122,14 @@ function AdminProductList() {
                 {filteredProducts.map((product) => {
                     return (
                         <tr key={product.id}>
-                            <td>{truncateText(product.name, 40)}</td>
+                            <td className={!product.active ? "text-danger" : "text-black"}>{truncateText(product.name, 40)}</td>
                             <td>{product.price.toLocaleString('de-DE', {
                                 style: 'currency',
                                 currency: 'EUR'
                             })}</td>
                             <td>{product.categoryName}</td>
-                            <td><Link to={`/products/detail/${product.id}`}
+                            <td>{product.active ? "Aktiv" : "Passiv"}</td>
+                            <td><Link to={`/admin/products/detail/${product.id}`}
                                       className="btn btn-outline-info">Detail</Link></td>
                         </tr>
                     );
