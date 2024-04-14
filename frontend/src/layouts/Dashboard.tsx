@@ -6,7 +6,8 @@ import ProductList from "../pages/productList/ProductList.tsx";
 import ProductDetail from "../pages/productDetail/ProductDetail.tsx";
 import Contact from "../pages/contact/Contact.tsx";
 import PartyPlatterList from "../pages/partyPlatterList/PartyPlatterList.tsx";
-import ProductAdd from "../pages/admin/ProductAdd.tsx";
+import AdminProductAdd from "../pages/admin/products/AdminProductAdd.tsx";
+import AdminProductList from "../pages/admin/products/AdminProductList.tsx";
 
 
 function Dashboard() {
@@ -20,7 +21,8 @@ function Dashboard() {
                     <Route path={'/products/detail/:id'} element={<ProductDetail/>}/>
                     <Route path={'/contact'} element={<Contact/>}/>
                     <Route path={'/party-platter'} element={<PartyPlatterList/>}/>
-                    <Route path={'/admin/products/add'} element={<ProductAdd/>}/>
+                    <Route path={'/admin/products'} element={<AdminProductList/>}/>
+                    <Route path={'/admin/products/add'} element={<AdminProductAdd/>}/>
                 </Routes>
             </div>
             <Footer/>
