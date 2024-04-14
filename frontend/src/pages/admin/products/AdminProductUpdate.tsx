@@ -12,9 +12,6 @@ const productService = new ProductService();
 const categoryService = new CategoryService();
 function AdminProductUpdate() {
     const { id = '0' } = useParams();
-    const navigate = useNavigate();
-    const [errorMessage, setErrorMessage] = useState<string>('');
-    const [categories, setCategories] = useState<Category[]>([]);
     const [product, setProduct] = useState<Product>({
         id: 0,
         name: '',
@@ -31,6 +28,10 @@ function AdminProductUpdate() {
         updatedAt: new Date()
     });
 
+    const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState<string>('');
+    const [categories, setCategories] = useState<Category[]>([]);
+
     useEffect(() => {
         categoryService.getAllCategories().then((response) => {
             setCategories(response.data);
@@ -43,9 +44,14 @@ function AdminProductUpdate() {
                 .then((response) => {
                     setProduct(prevProduct => ({...prevProduct, ...response.data}));
                 })
-                .catch((error) => {
-                    console.error('Error fetching product:', error);
-                    navigate('*');
+                .catch(error => {
+                    if (error.response) {
+                        console.log(error.response.data);
+                        setErrorMessage(error.response.data.message);
+                    } else {
+                        console.log('Etwas ist schief gelaufen:', error.message);
+                        setErrorMessage('Etwas ist schief gelaufen: ' + error.message);
+                    }
                 });
         }
     }, [id, navigate]);

@@ -41,7 +41,7 @@ function AdminProductAdd() {
         productService.addProduct(product)
             .then(response => {
                 console.log(response)
-                navigate('/products')
+                navigate('/admin/products')
             })
             .catch(error => {
                 if (error.response) {
