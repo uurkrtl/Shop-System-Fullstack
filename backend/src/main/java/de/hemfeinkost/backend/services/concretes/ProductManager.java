@@ -80,6 +80,7 @@ public class ProductManager implements ProductService {
         product.setCreatedAt(updatedProduct.getCreatedAt());
         product.setUpdatedAt(LocalDateTime.now());
         product.setId(id);
+        product.setActive(updatedProduct.isActive());
         product = productRepository.save(product);
         return modelMapperService.forResponse().map(product, ProductCreatedResponse.class);
     }
@@ -89,6 +90,15 @@ public class ProductManager implements ProductService {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new RecordNotFoundException(ProductMessage.PRODUCT_NOT_FOUND));
         product.setActive(status);
+        product = productRepository.save(product);
+        return modelMapperService.forResponse().map(product, ProductCreatedResponse.class);
+    }
+
+    @Override
+    public ProductCreatedResponse updateProductReadCount(long id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new RecordNotFoundException(ProductMessage.PRODUCT_NOT_FOUND));
+        product.setReadCount(product.getReadCount() + 1);
         product = productRepository.save(product);
         return modelMapperService.forResponse().map(product, ProductCreatedResponse.class);
     }

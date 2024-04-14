@@ -47,4 +47,9 @@ public class ProductController {
     public ProductCreatedResponse changeProductStatus(@PathVariable long id, @RequestParam boolean status) {
         return productService.changeProductStatus(id, status);
     }
+
+    @PutMapping("/read-count/{id}")
+    public ProductCreatedResponse updateProductReadCount(@PathVariable long id) {
+        return productService.updateProductReadCount(id);
+    }
 }
