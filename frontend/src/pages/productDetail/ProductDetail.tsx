@@ -9,8 +9,6 @@ import {Unit} from "../../types/enums/Unit.ts";
 const productService = new ProductService();
 function ProductDetail() {
     const { id = '0' } = useParams();
-    const navigate = useNavigate();
-    const [loading, setLoading] = useState(true);
     const [product, setProduct] = useState<Product>({
         id: 0,
         name: '',
@@ -27,16 +25,24 @@ function ProductDetail() {
         updatedAt: new Date()
     });
 
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
+    const [errorMessage, setErrorMessage] = useState<string>('');
+
     useEffect(() => {
         if (id) {
             productService.getProductById(Number(id))
                 .then((response) => {
                     setProduct(response.data);
                     setLoading(false);
+                    setErrorMessage('')
                 })
-                .catch((error) => {
-                    console.error('Error fetching product:', error);
-                    navigate('*');
+                .catch(error => {
+                    if (error.response) {
+                        setErrorMessage(error.response.data.message);
+                    } else {
+                        setErrorMessage('Etwas ist schief gelaufen: ' + error.message);
+                    }
                 });
         }
     }, [id, navigate]);
@@ -110,6 +116,13 @@ function ProductDetail() {
                     </div>
                 </div>
             </div>
+
+            {errorMessage && (
+                <div className="alert alert-danger" role="alert">
+                    {errorMessage}
+                </div>
+            )}
+
         </div>
     );
 }
