@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from "react";
-import ProductService from "../../services/ProductService.ts";
-import CategoryService from "../../services/CategoryService.ts";
-import {Category} from "../../types/Category.ts";
-import {Product} from "../../types/Product.ts";
+import ProductService from "../../../services/ProductService.ts";
+import CategoryService from "../../../services/CategoryService.ts";
+import {Category} from "../../../types/Category.ts";
+import {Product} from "../../../types/Product.ts";
 import {useNavigate} from "react-router-dom";
-import PageHeader from "../../layouts/PageHeader.tsx";
-import ProductCommonFormFields from "../../layouts/commonFormFields/ProductCommonFormFields.tsx";
+import PageHeader from "../../../layouts/PageHeader.tsx";
+import ProductCommonFormFields from "../../../layouts/commonFormFields/ProductCommonFormFields.tsx";
 
 
-function ProductAdd() {
+function AdminProductAdd() {
     const navigate = useNavigate();
     const productService = new ProductService();
     const categoryService = new CategoryService();
@@ -74,4 +74,4 @@ function ProductAdd() {
     );
 }
 
-export default ProductAdd;
+export default AdminProductAdd;

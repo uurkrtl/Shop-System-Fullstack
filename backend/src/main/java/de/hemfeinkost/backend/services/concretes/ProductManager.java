@@ -9,11 +9,15 @@ import de.hemfeinkost.backend.repositories.ProductRepository;
 import de.hemfeinkost.backend.services.abstracts.ProductService;
 import de.hemfeinkost.backend.services.dtos.requests.ProductRequest;
 import de.hemfeinkost.backend.services.dtos.responses.ProductCreatedResponse;
+import de.hemfeinkost.backend.services.dtos.responses.ProductGetAllResponse;
 import de.hemfeinkost.backend.services.messages.CategoryMessage;
 import de.hemfeinkost.backend.services.messages.ProductMessage;
 import de.hemfeinkost.backend.services.rules.ProductBusinessRules;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +26,14 @@ public class ProductManager implements ProductService {
     private final CategoryRepository categoryRepository;
     private final ModelMapperService modelMapperService;
     private final ProductBusinessRules productBusinessRules;
+
+    @Override
+    public List<ProductGetAllResponse> getAllProducts() {
+        List<Product> products = productRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
+        return products.stream()
+                .map(product -> modelMapperService.forResponse().map(product, ProductGetAllResponse.class))
+                .toList();
+    }
 
     @Override
     public ProductCreatedResponse getProductById(Long id) {
