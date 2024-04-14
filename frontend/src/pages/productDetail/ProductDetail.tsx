@@ -35,7 +35,13 @@ function ProductDetail() {
                 .then((response) => {
                     setProduct(response.data);
                     setLoading(false);
-                    setErrorMessage('')
+                    setErrorMessage('');
+                    productService.updateProductReadCount(Number(id)).then(() => {
+                        console.log('Die Anzahl der Produktlesevorgänge wurde erfolgreich aktualisiert');
+                    })
+                        .catch((error) => {
+                            console.error('Fehler beim Aktualisieren der Leseanzahl des Produkts:', error);
+                        });
                 })
                 .catch(error => {
                     if (error.response) {
@@ -111,7 +117,7 @@ function ProductDetail() {
                     )}
 
                     <div className="d-grid gap-2 d-md-flex justify-content-md-start">
-                        <Link to={`/products`} type="button"
+                        <Link to={`/products/${product.categoryId}`} type="button"
                               className="btn btn-outline-secondary btn-lg px-4">Ähnliche Produkte</Link>
                     </div>
                 </div>

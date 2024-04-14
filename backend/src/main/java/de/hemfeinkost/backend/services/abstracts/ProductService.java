@@ -13,4 +13,5 @@ public interface ProductService {
     ProductCreatedResponse addProduct(ProductRequest productRequest);
     ProductCreatedResponse updateProduct(long id, ProductRequest productRequest);
     ProductCreatedResponse changeProductStatus(long id, boolean status);
+    ProductCreatedResponse updateProductReadCount(long id);
 }

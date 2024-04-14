@@ -5,6 +5,7 @@ import PageHeader from "../../../layouts/PageHeader.tsx";
 import {Link} from "react-router-dom";
 import {Category} from "../../../types/Category.ts";
 import CategoryService from "../../../services/CategoryService.ts";
+import {Unit} from "../../../types/enums/Unit.ts";
 
 
 const productService = new ProductService();
@@ -112,6 +113,7 @@ function AdminProductList() {
                 <thead>
                 <tr>
                     <th scope="col">Name</th>
+                    <th scope="col">Leseanzahl</th>
                     <th scope="col">Verkaufspreis</th>
                     <th scope="col">Kategoriename</th>
                     <th scope="col">Status</th>
@@ -123,10 +125,13 @@ function AdminProductList() {
                     return (
                         <tr key={product.id}>
                             <td className={!product.active ? "text-danger" : "text-black"}>{truncateText(product.name, 40)}</td>
+                            <td>{product.readCount}</td>
                             <td>{product.price.toLocaleString('de-DE', {
                                 style: 'currency',
                                 currency: 'EUR'
-                            })}</td>
+                            })}&nbsp;
+                                <small>({Unit[product.unit as keyof typeof Unit]})</small>
+                            </td>
                             <td>{product.categoryName}</td>
                             <td>{product.active ? "Aktiv" : "Passiv"}</td>
                             <td><Link to={`/admin/products/detail/${product.id}`}

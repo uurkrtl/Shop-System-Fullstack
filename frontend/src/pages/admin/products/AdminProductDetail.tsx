@@ -95,6 +95,10 @@ function AdminProductDetail() {
                             <td>{product.categoryName}</td>
                         </tr>
                         <tr>
+                            <th scope="row">Leseanzahl</th>
+                            <td>{product.readCount}</td>
+                        </tr>
+                        <tr>
                             <th scope="row">Erstellung</th>
                             <td>{product.createdAt ? new Date(product.createdAt).toLocaleString('de-DE') : "-"}</td>
                         </tr>
