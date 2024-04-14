@@ -11,5 +11,6 @@ public interface ProductService {
     List<ProductGetAllResponse> getActiveProducts();
     ProductCreatedResponse getProductById(long id);
     ProductCreatedResponse addProduct(ProductRequest productRequest);
+    ProductCreatedResponse updateProduct(long id, ProductRequest productRequest);
     ProductCreatedResponse changeProductStatus(long id, boolean status);
 }

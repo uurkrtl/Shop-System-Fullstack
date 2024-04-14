@@ -38,7 +38,12 @@ public class ProductController {
         return productService.addProduct(productRequest);
     }
 
-    @PostMapping("/status/{id}")
+    @PutMapping("/{id}")
+    public ProductCreatedResponse updateProduct(@PathVariable long id, @Valid @RequestBody ProductRequest productRequest) {
+        return productService.updateProduct(id, productRequest);
+    }
+
+    @PutMapping("/status/{id}")
     public ProductCreatedResponse changeProductStatus(@PathVariable long id, @RequestParam boolean status) {
         return productService.changeProductStatus(id, status);
     }
