@@ -8,6 +8,7 @@ import Contact from "../pages/contact/Contact.tsx";
 import PartyPlatterList from "../pages/partyPlatterList/PartyPlatterList.tsx";
 import AdminProductAdd from "../pages/admin/products/AdminProductAdd.tsx";
 import AdminProductList from "../pages/admin/products/AdminProductList.tsx";
+import AdminProductDetail from "../pages/admin/products/AdminProductDetail.tsx";
 
 
 function Dashboard() {
@@ -22,6 +23,7 @@ function Dashboard() {
                     <Route path={'/contact'} element={<Contact/>}/>
                     <Route path={'/party-platter'} element={<PartyPlatterList/>}/>
                     <Route path={'/admin/products'} element={<AdminProductList/>}/>
+                    <Route path={'/admin/products/detail/:id'} element={<AdminProductDetail/>}/>
                     <Route path={'/admin/products/add'} element={<AdminProductAdd/>}/>
                 </Routes>
             </div>

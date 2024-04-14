@@ -69,6 +69,22 @@ public class ProductManager implements ProductService {
     }
 
     @Override
+    public ProductCreatedResponse updateProduct(long id, ProductRequest productRequest) {
+        productBusinessRules.checkIfProductNameExists(productRequest.getName(), id);
+        Product updatedProduct = productRepository.findById(id)
+                .orElseThrow(() -> new RecordNotFoundException(ProductMessage.PRODUCT_NOT_FOUND));
+        Category selectedCategory = categoryRepository.findById(productRequest.getCategoryId())
+                .orElseThrow(() -> new RuntimeException(CategoryMessage.CATEGORY_NAME_NOT_FOUND));
+        Product product = modelMapperService.forRequest().map(productRequest, Product.class);
+        product.setCategory(selectedCategory);
+        product.setCreatedAt(updatedProduct.getCreatedAt());
+        product.setUpdatedAt(LocalDateTime.now());
+        product.setId(id);
+        product = productRepository.save(product);
+        return modelMapperService.forResponse().map(product, ProductCreatedResponse.class);
+    }
+
+    @Override
     public ProductCreatedResponse changeProductStatus(long id, boolean status) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new RecordNotFoundException(ProductMessage.PRODUCT_NOT_FOUND));
