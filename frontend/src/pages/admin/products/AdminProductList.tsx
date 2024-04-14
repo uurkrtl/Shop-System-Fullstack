@@ -76,8 +76,8 @@ function AdminProductList() {
             </div>
 
             <div className="input-group">
-                <div className="form-check-inline mb-3">
-                    <label className="form-check-label mx-1">Kategorie wählen:</label>
+                <div className="form-check-inline">
+                    <p className="form-check-label mx-1">Kategorie wählen:</p>
                 </div>
 
                 <div className="form-check form-check-inline mb-3">
@@ -97,7 +97,7 @@ function AdminProductList() {
                 })}
             </div>
 
-            <div className="input-group">
+            <div className="input-group mb-2">
                 <span className="input-group-text" id="basic-addon3">Schreiben einen Namensfilter</span>
                 <input
                     type="text"
