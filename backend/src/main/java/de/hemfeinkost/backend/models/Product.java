@@ -31,17 +31,17 @@ public class Product {
     @Column(name = "price")
     private double price;
 
-    @Column(name = "imageUrl")
+    @Column(name = "image-url")
     private String imageUrl;
 
-    @Column(name = "readCount")
+    @Column(name = "read-count")
     private long readCount;
 
     @Column(name = "unit")
     private Unit unit;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category-id")
     private Category category;
 
     @Column(name = "active")

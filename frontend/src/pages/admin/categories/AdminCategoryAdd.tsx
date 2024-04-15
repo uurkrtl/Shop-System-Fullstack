@@ -13,7 +13,7 @@ function AdminCategoryAdd() {
         id: 0,
         name: '',
         description: '',
-        imageUrl: '',
+        displayOrder: 0,
         active: true,
         createdAt: new Date(),
         updatedAt: new Date()

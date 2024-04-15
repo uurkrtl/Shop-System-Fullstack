@@ -105,6 +105,7 @@ function AdminCategoryList() {
                 <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Sortiernummer</th>
                     <th scope="col">Detail</th>
                 </tr>
                 </thead>
@@ -114,6 +115,7 @@ function AdminCategoryList() {
                         <tr key={category.id}>
                             <td className={!category.active ? "text-danger" : "text-black"}>{truncateText(category.name, 40)}</td>
                             <td>{category.active ? "Aktiv" : "Passiv"}</td>
+                            <td>{category.displayOrder}</td>
                             <td><Link to={`/admin/categories/detail/${category.id}`}
                                       className="btn btn-outline-info">Detail</Link></td>
                         </tr>

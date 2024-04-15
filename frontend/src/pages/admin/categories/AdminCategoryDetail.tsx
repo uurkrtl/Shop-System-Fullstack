@@ -10,7 +10,7 @@ function AdminCategoryDetail() {
         name: '',
         id: 0,
         description: '',
-        imageUrl: '',
+        displayOrder: 0,
         active: true,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -83,6 +83,10 @@ function AdminCategoryDetail() {
 
                     <table className="table table-striped-columns">
                         <tbody>
+                        <tr>
+                            <th scope="row">Sortiernummer</th>
+                            <td>{category.displayOrder}</td>
+                        </tr>
                         <tr>
                             <th scope="row">Erstellung</th>
                             <td>{category.createdAt ? new Date(category.createdAt).toLocaleString('de-DE') : "-"}</td>

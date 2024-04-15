@@ -140,14 +140,14 @@ function AdminProductList() {
                     );
                 })}
                 </tbody>
-
-                {errorMessage && (
-                    <div className="alert alert-danger mt-3" role="alert">
-                        {errorMessage}
-                    </div>
-                )}
-
             </table>
+
+            {errorMessage && (
+                <div className="alert alert-danger mt-3" role="alert">
+                    {errorMessage}
+                </div>
+            )}
+
         </div>
     );
 }

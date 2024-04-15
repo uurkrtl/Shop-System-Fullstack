@@ -24,8 +24,8 @@ public class Category {
     @Column(name = "description", length = 1000)
     private String description;
 
-    @Column(name = "imageUrl")
-    private String imageUrl;
+    @Column(name = "display-order")
+    private int displayOrder;
 
     @Column(name = "active")
     private boolean isActive;

@@ -1,5 +1,6 @@
 package de.hemfeinkost.backend.services.dtos.requests;
 
+import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,5 +14,6 @@ public class CategoryRequest {
     private String name;
     @Size(max = 1000, message = "Die Beschreibung darf maximal 1000 Zeichen lang sein")
     private String description;
-    private String imageUrl;
+    @PositiveOrZero(message = "Die Anzeigereihenfolge muss größer oder gleich 0 sein")
+    private int displayOrder;
 }

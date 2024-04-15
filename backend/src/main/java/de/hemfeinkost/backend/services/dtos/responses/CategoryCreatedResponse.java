@@ -13,7 +13,7 @@ public class CategoryCreatedResponse {
     private long id;
     private String name;
     private String description;
-    private String imageUrl;
+    private long displayOrder;
     private boolean isActive;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
