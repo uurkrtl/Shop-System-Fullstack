@@ -17,4 +17,8 @@ export default class CategoryService {
     addCategory(category: Category) {
         return axios.post('/api/categories', category)
     }
+
+    changeCategoryStatus(id: number, status: boolean) {
+        return axios.put(`/api/categories/status/${id}?status=${status}`)
+    }
 }
