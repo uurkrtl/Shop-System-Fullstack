@@ -18,6 +18,8 @@ import AdminPartyPlatterAdd from "../pages/admin/party-platters/AdminPartyPlatte
 import AdminPartyPlatterList from "../pages/admin/party-platters/AdminPartyPlatterList.tsx";
 import AdminPartyPlatterDetail from "../pages/admin/party-platters/AdminPartyPlatterDetail.tsx";
 import AdminPartyPlatterUpdate from "../pages/admin/party-platters/AdminPartyPlatterUpdate.tsx";
+import PageNotFound404 from "../pages/not-found-404/PageNotFound404.tsx";
+import AdminHomepage from "../pages/admin/admin-homepage/AdminHomepage.tsx";
 
 
 function Dashboard() {
@@ -31,6 +33,7 @@ function Dashboard() {
                     <Route path={'/products/detail/:id'} element={<ProductDetail/>}/>
                     <Route path={'/party-platters'} element={<PartyPlatterList/>}/>
                     <Route path={'/contact'} element={<Contact/>}/>
+                    <Route path={'/admin'} element={<AdminHomepage/>}/>
                     <Route path={'/admin/products'} element={<AdminProductList/>}/>
                     <Route path={'/admin/products/detail/:id'} element={<AdminProductDetail/>}/>
                     <Route path={'/admin/products/add'} element={<AdminProductAdd/>}/>
@@ -43,6 +46,7 @@ function Dashboard() {
                     <Route path={'/admin/party-platters/detail/:id'} element={<AdminPartyPlatterDetail/>}/>
                     <Route path={'/admin/party-platters/add'} element={<AdminPartyPlatterAdd/>}/>
                     <Route path={'/admin/party-platters/update/:id'} element={<AdminPartyPlatterUpdate/>}/>
+                    <Route path={'*'} element={<PageNotFound404/>}/>
                 </Routes>
             </div>
             <Footer/>
