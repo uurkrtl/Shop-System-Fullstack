@@ -9,6 +9,7 @@ function AdminProductDetail() {
     const { id = '0' } = useParams();
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState<string>('');
+    const [successMessage, setSuccessMessage] = useState<string>('');
     const [loading, setLoading] = useState(true);
     const [product, setProduct] = useState<Product>({
         id: 0,
@@ -29,8 +30,8 @@ function AdminProductDetail() {
     const handleStatusChange = (status: boolean) => {
         productService.changeProductStatus(Number(id), status)
             .then(() => {
-                console.log('Der Produktstatus wurde erfolgreich geändert.');
-                setErrorMessage('')
+                setSuccessMessage(successMessage + ' Der Produktstatus wurde erfolgreich geändert.');
+                setErrorMessage('');
                 setProduct({
                     ...product,
                     active: status
@@ -38,10 +39,10 @@ function AdminProductDetail() {
             })
             .catch((error) => {
                 if (error.response) {
-                    console.log(error.response.data);
+                    setSuccessMessage('');
                     setErrorMessage(error.response.data.message);
                 } else {
-                    console.log('Etwas ist schief gelaufen:', error.message);
+                    setSuccessMessage('');
                     setErrorMessage('Etwas ist schief gelaufen: ' + error.message);
                 }
             });

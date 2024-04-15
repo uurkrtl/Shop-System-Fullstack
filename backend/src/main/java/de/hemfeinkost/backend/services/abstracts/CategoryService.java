@@ -11,4 +11,5 @@ public interface CategoryService {
     List<CategoryGetAllResponse> getActiveCategories();
     CategoryCreatedResponse getCategoryById(Long id);
     CategoryCreatedResponse addCategory(CategoryRequest categoryRequest);
+    CategoryCreatedResponse changeCategoryStatus(long id, boolean status);
 }

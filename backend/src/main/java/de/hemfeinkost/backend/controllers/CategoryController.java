@@ -35,4 +35,9 @@ public class CategoryController {
     public CategoryCreatedResponse addCategory(@Valid @RequestBody CategoryRequest categoryRequest) {
         return categoryService.addCategory(categoryRequest);
     }
+
+    @PutMapping("/status/{id}")
+    public CategoryCreatedResponse changeCategoryStatus(@PathVariable long id, @RequestParam boolean status) {
+        return categoryService.changeCategoryStatus(id, status);
+    }
 }

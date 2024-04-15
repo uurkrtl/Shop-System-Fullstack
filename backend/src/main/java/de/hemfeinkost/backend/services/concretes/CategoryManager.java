@@ -58,4 +58,14 @@ public class CategoryManager implements CategoryService {
         category = categoryRepository.save(category);
         return modelMapperService.forResponse().map(category, CategoryCreatedResponse.class);
     }
+
+    @Override
+    public CategoryCreatedResponse changeCategoryStatus(long id, boolean status) {
+        categoryBusinessRules.checkIfCategoryHasActiveProducts(id);
+        Category category = categoryRepository.findById(id)
+                .orElseThrow(() -> new RecordNotFoundException(CategoryMessage.CATEGORY_NAME_NOT_FOUND));
+        category.setActive(status);
+        category = categoryRepository.save(category);
+        return modelMapperService.forResponse().map(category, CategoryCreatedResponse.class);
+    }
 }
