@@ -7,6 +7,7 @@ import de.hemfeinkost.backend.services.abstracts.PartyPlatterService;
 import de.hemfeinkost.backend.services.dtos.requests.PartyPlatterRequest;
 import de.hemfeinkost.backend.services.dtos.responses.PartyPlatterCreatedResponse;
 import de.hemfeinkost.backend.services.dtos.responses.PartyPlatterGetAllResponse;
+import de.hemfeinkost.backend.services.rules.PartyPlatterBusinessRules;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,7 @@ import java.util.List;
 public class PartyPlatterManager implements PartyPlatterService {
     private final PartyPlatterRepository partyPlatterRepository;
     private final ModelMapperService modelMapperService;
+    private final PartyPlatterBusinessRules partyPlatterBusinessRules;
 
     @Override
     public List<PartyPlatterGetAllResponse> getAllPartyPlatters() {
@@ -37,6 +39,7 @@ public class PartyPlatterManager implements PartyPlatterService {
 
     @Override
     public PartyPlatterCreatedResponse addPartyPlatter(PartyPlatterRequest partyPlatterRequest) {
+        partyPlatterBusinessRules.checkIfProductNameExists(partyPlatterRequest.getName());
         PartyPlatter partyPlatter = modelMapperService.forRequest().map(partyPlatterRequest, PartyPlatter.class);
         partyPlatter.setActive(true);
         partyPlatter.setCreatedAt(LocalDateTime.now());
