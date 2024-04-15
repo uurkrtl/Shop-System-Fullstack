@@ -60,6 +60,14 @@ function AdminPartyPlatterDetail() {
         }
     }, [id, navigate]);
 
+    if (errorMessage) {
+        return <div className="container">
+            <div className="alert alert-danger" role="alert">
+                {errorMessage}
+            </div>
+        </div>
+    }
+
     if (loading && !errorMessage) {
         return <div className={'container'}>
             <div className={'spinner-border text-primary mt-3'}>
@@ -67,14 +75,6 @@ function AdminPartyPlatterDetail() {
             </div>
             <h5>Wird geledan...</h5>
         </div>;
-    }
-
-    if (errorMessage) {
-        return <div className="container">
-            <div className="alert alert-danger" role="alert">
-                {errorMessage}
-            </div>
-        </div>
     }
 
     return (

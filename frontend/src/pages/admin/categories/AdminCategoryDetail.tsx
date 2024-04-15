@@ -6,8 +6,6 @@ import {Category} from "../../../types/Category.ts";
 const categoryService = new CategoryService();
 function AdminCategoryDetail() {
     const { id = '0' } = useParams();
-    const [loading, setLoading] = useState(true);
-    const navigate = useNavigate();
     const [category, setCategory] = useState<Category>({
         name: '',
         id: 0,
@@ -19,6 +17,8 @@ function AdminCategoryDetail() {
     });
 
     const [successMessage, setSuccessMessage] = useState<string>('');
+    const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState<string>('');
 
     const handleStatusChange = (status: boolean) => {
@@ -59,21 +59,19 @@ function AdminCategoryDetail() {
         }
     }, [id, navigate]);
 
-    if (loading && !errorMessage) {
-        return <div className={'container'}>
-            <div className={'spinner-border text-primary mt-3'}>
-                <span className={'visually-hidden'}></span>
-            </div>
-            <h5>Wird geledan...</h5>
-        </div>;
-    }
-
     if (errorMessage) {
         return <div className="container">
             <div className="alert alert-danger" role="alert">
                 {errorMessage}
             </div>
         </div>
+    }else if (loading) {
+        return <div className={'container'}>
+            <div className={'spinner-border text-primary mt-3'}>
+                <span className={'visually-hidden'}></span>
+            </div>
+            <h5>Wird geledan...</h5>
+        </div>;
     }
 
     return (
