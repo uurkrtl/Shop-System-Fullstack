@@ -9,5 +9,7 @@ import java.util.List;
 public interface PartyPlatterService {
     List<PartyPlatterGetAllResponse> getAllPartyPlatters();
     List<PartyPlatterGetAllResponse> getActivePartyPlatters();
+    PartyPlatterCreatedResponse getPartyPlatterById(long id);
     PartyPlatterCreatedResponse addPartyPlatter(PartyPlatterRequest partyPlatter);
+    PartyPlatterCreatedResponse changePartyPlatterStatus(long id, boolean status);
 }

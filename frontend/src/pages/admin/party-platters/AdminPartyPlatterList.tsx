@@ -19,7 +19,7 @@ function AdminPartyPlatterList() {
         return text;
     };
 
-    const filteredCategories = partyPlatterByStatus.filter(
+    const filteredPartyPlatters = partyPlatterByStatus.filter(
         (partyPlatter) =>
             partyPlatter.name.toLowerCase().includes(filterByName.toLowerCase())
     );
@@ -111,13 +111,13 @@ function AdminPartyPlatterList() {
                 </tr>
                 </thead>
                 <tbody>
-                {filteredCategories.map((category) => {
+                {filteredPartyPlatters.map((partyPlatter) => {
                     return (
-                        <tr key={category.id}>
-                            <td className={!category.active ? "text-danger" : "text-black"}>{truncateText(category.name, 40)}</td>
-                            <td>{category.active ? "Aktiv" : "Passiv"}</td>
-                            <td>{category.price}</td>
-                            <td><Link to={`/admin/categories/detail/${category.id}`}
+                        <tr key={partyPlatter.id}>
+                            <td className={!partyPlatter.active ? "text-danger" : "text-black"}>{truncateText(partyPlatter.name, 40)}</td>
+                            <td>{partyPlatter.active ? "Aktiv" : "Passiv"}</td>
+                            <td>{partyPlatter.price}</td>
+                            <td><Link to={`/admin/party-platters/detail/${partyPlatter.id}`}
                                       className="btn btn-outline-info">Detail</Link></td>
                         </tr>
                     );

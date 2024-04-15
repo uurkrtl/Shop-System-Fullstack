@@ -27,9 +27,19 @@ public class PartyPlatterController {
         return partyPlatterService.getActivePartyPlatters();
     }
 
+    @GetMapping("/{id}")
+    public PartyPlatterCreatedResponse getPartyPlatterById(@PathVariable long id) {
+        return partyPlatterService.getPartyPlatterById(id);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public PartyPlatterCreatedResponse addPartyPlatter(@Valid @RequestBody PartyPlatterRequest partyPlatterRequest) {
         return partyPlatterService.addPartyPlatter(partyPlatterRequest);
+    }
+
+    @PutMapping("/status/{id}")
+    public PartyPlatterCreatedResponse changeProductStatus(@PathVariable long id, @RequestParam boolean status) {
+        return partyPlatterService.changePartyPlatterStatus(id, status);
     }
 }

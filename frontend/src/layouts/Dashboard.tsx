@@ -16,6 +16,7 @@ import AdminCategoryDetail from "../pages/admin/categories/AdminCategoryDetail.t
 import AdminCategoryUpdate from "../pages/admin/categories/AdminCategoryUpdate.tsx";
 import AdminPartyPlatterAdd from "../pages/admin/party-platters/AdminPartyPlatterAdd.tsx";
 import AdminPartyPlatterList from "../pages/admin/party-platters/AdminPartyPlatterList.tsx";
+import AdminPartyPlatterDetail from "../pages/admin/party-platters/AdminPartyPlatterDetail.tsx";
 
 
 function Dashboard() {
@@ -38,6 +39,7 @@ function Dashboard() {
                     <Route path={'/admin/categories/add'} element={<AdminCategoryAdd/>}/>
                     <Route path={'/admin/categories/update/:id'} element={<AdminCategoryUpdate/>}/>
                     <Route path={'/admin/party-platters'} element={<AdminPartyPlatterList/>}/>
+                    <Route path={'/admin/party-platters/detail/:id'} element={<AdminPartyPlatterDetail/>}/>
                     <Route path={'/admin/party-platters/add'} element={<AdminPartyPlatterAdd/>}/>
                 </Routes>
             </div>
