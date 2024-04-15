@@ -69,6 +69,10 @@ public class CategoryManager implements CategoryService {
         Category updatedCategory = categoryRepository.findById(id)
                 .orElseThrow(() -> new RecordNotFoundException(CategoryMessage.CATEGORY_NAME_NOT_FOUND));
         Category category = modelMapperService.forRequest().map(categoryRequest, Category.class);
+        if (categoryRequest.getDisplayOrder() == 0) {
+            int maxDisplayOrder = categoryRepository.findMaxDisplayOrder();
+            category.setDisplayOrder(maxDisplayOrder + 1);
+        }
         category.setActive(updatedCategory.isActive());
         category.setCreatedAt(updatedCategory.getCreatedAt());
         category.setUpdatedAt(LocalDateTime.now());

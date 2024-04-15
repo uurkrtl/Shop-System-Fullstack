@@ -107,6 +107,7 @@ function AdminPartyPlatterList() {
                     <th scope="col">Name</th>
                     <th scope="col">Status</th>
                     <th scope="col">Verkaufspreis</th>
+                    <th scope="col">Sortiernummer</th>
                     <th scope="col">Detail</th>
                 </tr>
                 </thead>
@@ -117,6 +118,7 @@ function AdminPartyPlatterList() {
                             <td className={!partyPlatter.active ? "text-danger" : "text-black"}>{truncateText(partyPlatter.name, 40)}</td>
                             <td>{partyPlatter.active ? "Aktiv" : "Passiv"}</td>
                             <td>{partyPlatter.price}</td>
+                            <td>{partyPlatter.displayOrder}</td>
                             <td><Link to={`/admin/party-platters/detail/${partyPlatter.id}`}
                                       className="btn btn-outline-info">Detail</Link></td>
                         </tr>

@@ -12,17 +12,31 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class PartyPlatterBusinessRules {
     private final PartyPlatterRepository partyPlatterRepository;
-    public void checkIfProductNameExists(String partyPlatterName) {
+    public void checkIfPartyPlatterNameExists(String partyPlatterName) {
         if (partyPlatterRepository.existsByName(partyPlatterName)) {
             throw new DuplicateRecordException(PartyPlatterMessage.PARTY_PLATTER_NAME_ALREADY_EXISTS);
         }
     }
 
-    public void checkIfCategoryNameExists(String partyPlatterName, long id) {
+    public void checkIfPartyPlatterNameExists(String partyPlatterName, long id) {
         PartyPlatter partyPlatter = partyPlatterRepository.findById(id)
                 .orElseThrow(() -> new RecordNotFoundException(PartyPlatterMessage.PARTY_PLATTER_NOT_FOUND));
         if(!partyPlatter.getName().equals(partyPlatterName) && partyPlatterRepository.existsByName(partyPlatterName)) {
             throw new DuplicateRecordException(PartyPlatterMessage.PARTY_PLATTER_NOT_FOUND);
+        }
+    }
+
+    public void checkIfPartyPlatterDisplayOrderExists(int displayOrder) {
+        if (partyPlatterRepository.existsByDisplayOrder(displayOrder)) {
+            throw new DuplicateRecordException(PartyPlatterMessage.DISPLAY_ORDER_ALREADY_EXISTS);
+        }
+    }
+
+    public void checkIfPartyPlatterDisplayOrderExists(int displayOrder, long id) {
+        PartyPlatter partyPlatter = partyPlatterRepository.findById(id)
+                .orElseThrow(() -> new RecordNotFoundException(PartyPlatterMessage.PARTY_PLATTER_NOT_FOUND));
+        if(partyPlatter.getDisplayOrder() != displayOrder && partyPlatterRepository.existsByDisplayOrder(displayOrder)) {
+            throw new DuplicateRecordException(PartyPlatterMessage.DISPLAY_ORDER_ALREADY_EXISTS);
         }
     }
 }

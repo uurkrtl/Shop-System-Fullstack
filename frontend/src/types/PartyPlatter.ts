@@ -4,6 +4,7 @@ export type PartyPlatter = {
     description: string;
     size: string;
     price: number;
+    displayOrder: number;
     active: boolean;
     createdAt: Date;
     updatedAt: Date;

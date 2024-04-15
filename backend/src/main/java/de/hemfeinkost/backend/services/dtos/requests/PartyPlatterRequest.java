@@ -1,6 +1,7 @@
 package de.hemfeinkost.backend.services.dtos.requests;
 
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,4 +19,6 @@ public class PartyPlatterRequest {
     private String size;
     @Positive(message = "Der Preis muss größer als 0 sein")
     private double price;
+    @PositiveOrZero(message = "Die Anzeigereihenfolge muss größer oder gleich 0 sein")
+    private int displayOrder;
 }

@@ -11,6 +11,7 @@ import de.hemfeinkost.backend.services.dtos.responses.PartyPlatterGetAllResponse
 import de.hemfeinkost.backend.services.messages.PartyPlatterMessage;
 import de.hemfeinkost.backend.services.rules.PartyPlatterBusinessRules;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -25,7 +26,7 @@ public class PartyPlatterManager implements PartyPlatterService {
 
     @Override
     public List<PartyPlatterGetAllResponse> getAllPartyPlatters() {
-        List<PartyPlatter> partyPlatters = partyPlatterRepository.findAll();
+        List<PartyPlatter> partyPlatters = partyPlatterRepository.findAll(Sort.by(Sort.Direction.ASC, "displayOrder"));
         return partyPlatters.stream()
                 .map(partyPlatter -> modelMapperService.forResponse()
                         .map(partyPlatter, PartyPlatterGetAllResponse.class)).toList();
@@ -33,7 +34,7 @@ public class PartyPlatterManager implements PartyPlatterService {
 
     @Override
     public List<PartyPlatterGetAllResponse> getActivePartyPlatters() {
-        List<PartyPlatter> partyPlatters = partyPlatterRepository.findAllByIsActiveTrue();
+        List<PartyPlatter> partyPlatters = partyPlatterRepository.findAllByIsActiveTrue(Sort.by(Sort.Direction.ASC, "displayOrder"));
         return partyPlatters.stream()
                 .map(partyPlatter -> modelMapperService.forResponse()
                         .map(partyPlatter, PartyPlatterGetAllResponse.class)).toList();
@@ -48,8 +49,13 @@ public class PartyPlatterManager implements PartyPlatterService {
 
     @Override
     public PartyPlatterCreatedResponse addPartyPlatter(PartyPlatterRequest partyPlatterRequest) {
-        partyPlatterBusinessRules.checkIfProductNameExists(partyPlatterRequest.getName());
+        partyPlatterBusinessRules.checkIfPartyPlatterNameExists(partyPlatterRequest.getName());
+        partyPlatterBusinessRules.checkIfPartyPlatterDisplayOrderExists(partyPlatterRequest.getDisplayOrder());
         PartyPlatter partyPlatter = modelMapperService.forRequest().map(partyPlatterRequest, PartyPlatter.class);
+        if (partyPlatterRequest.getDisplayOrder() == 0) {
+            int maxDisplayOrder = partyPlatterRepository.findMaxDisplayOrder();
+            partyPlatter.setDisplayOrder(maxDisplayOrder + 1);
+        }
         partyPlatter.setActive(true);
         partyPlatter.setCreatedAt(LocalDateTime.now());
         partyPlatter = partyPlatterRepository.save(partyPlatter);
@@ -58,10 +64,15 @@ public class PartyPlatterManager implements PartyPlatterService {
 
     @Override
     public PartyPlatterCreatedResponse updatePartyPlatter(long id, PartyPlatterRequest partyPlatterRequest) {
-        partyPlatterBusinessRules.checkIfCategoryNameExists(partyPlatterRequest.getName(), id);
+        partyPlatterBusinessRules.checkIfPartyPlatterNameExists(partyPlatterRequest.getName(), id);
+        partyPlatterBusinessRules.checkIfPartyPlatterDisplayOrderExists(partyPlatterRequest.getDisplayOrder(), id);
         PartyPlatter updatedPartyPlatter = partyPlatterRepository.findById(id)
                 .orElseThrow(() -> new RecordNotFoundException(PartyPlatterMessage.PARTY_PLATTER_NOT_FOUND));
         PartyPlatter partyPlatter = modelMapperService.forRequest().map(partyPlatterRequest, PartyPlatter.class);
+        if (partyPlatterRequest.getDisplayOrder() == 0) {
+            int maxDisplayOrder = partyPlatterRepository.findMaxDisplayOrder();
+            partyPlatter.setDisplayOrder(maxDisplayOrder + 1);
+        }
         partyPlatter.setCreatedAt(updatedPartyPlatter.getCreatedAt());
         partyPlatter.setUpdatedAt(LocalDateTime.now());
         partyPlatter.setId(id);
