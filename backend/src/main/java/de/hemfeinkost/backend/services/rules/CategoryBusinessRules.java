@@ -35,4 +35,18 @@ public class CategoryBusinessRules {
             throw new HaveActiveProductException(CategoryMessage.CATEGORY_HAS_ACTIVE_PRODUCTS);
         }
     }
+
+    public void checkIfCategoryDisplayOrderExists(int displayOrder) {
+        if (categoryRepository.existsByDisplayOrder(displayOrder)) {
+            throw new DuplicateRecordException(CategoryMessage.DISPLAY_ORDER_ALREADY_EXISTS);
+        }
+    }
+
+    public void checkIfCategoryDisplayOrderExists(int displayOrder, long id) {
+        Category category = categoryRepository.findById(id)
+                .orElseThrow(() -> new RecordNotFoundException(CategoryMessage.CATEGORY_NAME_NOT_FOUND));
+        if(category.getDisplayOrder() != displayOrder && categoryRepository.existsByDisplayOrder(displayOrder)) {
+            throw new DuplicateRecordException(CategoryMessage.DISPLAY_ORDER_ALREADY_EXISTS);
+        }
+    }
 }

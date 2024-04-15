@@ -2,7 +2,7 @@ export type Category = {
     id: number;
     name: string;
     description: string;
-    imageUrl: string;
+    displayOrder: number;
     active: boolean;
     createdAt: Date;
     updatedAt: Date;

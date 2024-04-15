@@ -11,6 +11,7 @@ import de.hemfeinkost.backend.services.dtos.responses.CategoryGetAllResponse;
 import de.hemfeinkost.backend.services.messages.CategoryMessage;
 import de.hemfeinkost.backend.services.rules.CategoryBusinessRules;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -25,7 +26,7 @@ public class CategoryManager implements CategoryService {
 
     @Override
     public List<CategoryGetAllResponse> getAllCategories() {
-        List<Category> categories = categoryRepository.findAll();
+        List<Category> categories = categoryRepository.findAll(Sort.by(Sort.Direction.ASC, "displayOrder"));
         return categories.stream()
                 .map(category -> modelMapperService.forResponse()
                         .map(category, CategoryGetAllResponse.class)).toList();
@@ -33,14 +34,14 @@ public class CategoryManager implements CategoryService {
 
     @Override
     public List<CategoryGetAllResponse> getActiveCategories() {
-        List<Category> categories = categoryRepository.findAllByIsActiveTrue();
+        List<Category> categories = categoryRepository.findAllByIsActiveTrue(Sort.by(Sort.Direction.ASC, "displayOrder"));
         return categories.stream()
                 .map(category -> modelMapperService.forResponse()
                         .map(category, CategoryGetAllResponse.class)).toList();
     }
 
     @Override
-    public CategoryCreatedResponse getCategoryById(Long id) {
+    public CategoryCreatedResponse getCategoryById(long id) {
         Category category = categoryRepository.findById(id)
                 .orElseThrow(() -> new RecordNotFoundException(CategoryMessage.CATEGORY_NAME_NOT_FOUND));
         return modelMapperService.forResponse().map(category, CategoryCreatedResponse.class);
@@ -49,9 +50,11 @@ public class CategoryManager implements CategoryService {
     @Override
     public CategoryCreatedResponse addCategory(CategoryRequest categoryRequest) {
         categoryBusinessRules.checkIfCategoryNameExists(categoryRequest.getName());
+        categoryBusinessRules.checkIfCategoryDisplayOrderExists(categoryRequest.getDisplayOrder());
         Category category = modelMapperService.forRequest().map(categoryRequest, Category.class);
-        if (category.getImageUrl().isEmpty()) {
-            category.setImageUrl("https://img.freepik.com/vektoren-premium/foto-kommt-bald-bilderrahmen_268834-398.jpg");
+        if (categoryRequest.getDisplayOrder() == 0) {
+            int maxDisplayOrder = categoryRepository.findMaxDisplayOrder();
+            category.setDisplayOrder(maxDisplayOrder + 1);
         }
         category.setActive(true);
         category.setCreatedAt(LocalDateTime.now());
@@ -62,6 +65,7 @@ public class CategoryManager implements CategoryService {
     @Override
     public CategoryCreatedResponse updateCategory(long id, CategoryRequest categoryRequest) {
         categoryBusinessRules.checkIfCategoryNameExists(categoryRequest.getName(), id);
+        categoryBusinessRules.checkIfCategoryDisplayOrderExists(categoryRequest.getDisplayOrder(), id);
         Category updatedCategory = categoryRepository.findById(id)
                 .orElseThrow(() -> new RecordNotFoundException(CategoryMessage.CATEGORY_NAME_NOT_FOUND));
         Category category = modelMapperService.forRequest().map(categoryRequest, Category.class);
