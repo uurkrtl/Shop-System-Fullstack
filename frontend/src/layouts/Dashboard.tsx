@@ -11,6 +11,7 @@ import AdminProductList from "../pages/admin/products/AdminProductList.tsx";
 import AdminProductDetail from "../pages/admin/products/AdminProductDetail.tsx";
 import AdminProductUpdate from "../pages/admin/products/AdminProductUpdate.tsx";
 import AdminCategoryAdd from "../pages/admin/categories/AdminCategoryAdd.tsx";
+import AdminCategoryList from "../pages/admin/categories/AdminCategoryList.tsx";
 
 
 function Dashboard() {
@@ -28,6 +29,7 @@ function Dashboard() {
                     <Route path={'/admin/products/detail/:id'} element={<AdminProductDetail/>}/>
                     <Route path={'/admin/products/add'} element={<AdminProductAdd/>}/>
                     <Route path={'/admin/products/update/:id'} element={<AdminProductUpdate/>}/>
+                    <Route path={'/admin/categories'} element={<AdminCategoryList/>}/>
                     <Route path={'/admin/categories/add'} element={<AdminCategoryAdd/>}/>
                 </Routes>
             </div>
