@@ -3,6 +3,7 @@ package de.hemfeinkost.backend.core.exceptions;
 import de.hemfeinkost.backend.core.exceptions.types.DuplicateRecordException;
 import de.hemfeinkost.backend.core.exceptions.types.HaveActiveProductException;
 import de.hemfeinkost.backend.core.exceptions.types.RecordNotFoundException;
+import de.hemfeinkost.backend.core.exceptions.types.UnauthorizedAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.ObjectError;
@@ -47,6 +48,17 @@ public class GlobalExceptionHandler {
                 .timestamp(LocalDateTime.now())
                 .build();
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(UnauthorizedAccessException.class)
+    public ResponseEntity<ErrorResponse> handleUnauthorizedAccessException(UnauthorizedAccessException ex, WebRequest request) {
+        ErrorResponse errorResponse = ErrorResponse.builder()
+                .apiPath(request.getDescription(false))
+                .status(HttpStatus.FORBIDDEN)
+                .message(ex.getMessage())
+                .timestamp(LocalDateTime.now())
+                .build();
+        return new ResponseEntity<>(errorResponse, HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler
