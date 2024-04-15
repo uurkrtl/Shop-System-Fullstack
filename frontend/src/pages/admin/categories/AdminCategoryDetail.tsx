@@ -7,9 +7,6 @@ import {Category} from "../../../types/Category.ts";
 const categoryService = new CategoryService();
 function AdminCategoryDetail() {
     const { id = '0' } = useParams();
-    const navigate = useNavigate();
-    const [errorMessage, setErrorMessage] = useState<string>('');
-    const [loading, setLoading] = useState(true);
     const [category, setCategory] = useState<Category>({
         id: 0,
         name: '',
@@ -20,10 +17,15 @@ function AdminCategoryDetail() {
         updatedAt: new Date()
     });
 
+    const navigate = useNavigate();
+    const [successMessage, setSuccessMessage] = useState<string>('');
+    const [errorMessage, setErrorMessage] = useState<string>('');
+    const [loading, setLoading] = useState(true);
+
     const handleStatusChange = (status: boolean) => {
         categoryService.changeCategoryStatus(Number(id), status)
             .then(() => {
-                console.log('Der Produktstatus wurde erfolgreich geändert.');
+                setSuccessMessage(successMessage + ' Der Kategoriestatus wurde erfolgreich geändert.')
                 setErrorMessage('')
                 setCategory({
                     ...category,
@@ -33,8 +35,10 @@ function AdminCategoryDetail() {
             .catch((error) => {
                 if (error.response) {
                     setErrorMessage(error.response.data.message);
+                    setSuccessMessage('');
                 } else {
                     setErrorMessage('Etwas ist schief gelaufen: ' + error.message);
+                    setSuccessMessage('');
                 }
             });
     }
@@ -46,9 +50,12 @@ function AdminCategoryDetail() {
                     setCategory(response.data);
                     setLoading(false);
                 })
-                .catch((error) => {
-                    console.error('Fehler beim Abrufen der Kategorie:', error);
-                    navigate('*');
+                .catch(error => {
+                    if (error.response) {
+                        setErrorMessage(error.response.data.message);
+                    } else {
+                        setErrorMessage('Etwas ist schief gelaufen: ' + error.message);
+                    }
                 });
         }
     }, [id, navigate]);
@@ -64,7 +71,7 @@ function AdminCategoryDetail() {
 
     return (
         <div className="container">
-            <div className="row flex-lg-row align-items-center g-5 py-2">
+            <div className="row flex-lg-row align-items-center g-5 py-3">
                 <div className="col-lg-6">
                     <h1 className="display-5 fw-bold text-body-emphasis lh-1 mb-3">{category.name}</h1>
                     <p className="lead">{category.description}</p>
@@ -101,6 +108,12 @@ function AdminCategoryDetail() {
                     {errorMessage && (
                         <div className="alert alert-danger mt-3" role="alert">
                             {errorMessage}
+                        </div>
+                    )}
+
+                    {successMessage && (
+                        <div className="alert alert-success mt-3" role="alert">
+                            {successMessage}
                         </div>
                     )}
                 </div>
