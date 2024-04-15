@@ -36,6 +36,11 @@ public class CategoryController {
         return categoryService.addCategory(categoryRequest);
     }
 
+    @PutMapping("/{id}")
+    public CategoryCreatedResponse updateCategory(@PathVariable long id, @Valid @RequestBody CategoryRequest categoryRequest) {
+        return categoryService.updateCategory(id, categoryRequest);
+    }
+
     @PutMapping("/status/{id}")
     public CategoryCreatedResponse changeCategoryStatus(@PathVariable long id, @RequestParam boolean status) {
         return categoryService.changeCategoryStatus(id, status);

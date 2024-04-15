@@ -60,6 +60,20 @@ public class CategoryManager implements CategoryService {
     }
 
     @Override
+    public CategoryCreatedResponse updateCategory(long id, CategoryRequest categoryRequest) {
+        categoryBusinessRules.checkIfCategoryNameExists(categoryRequest.getName(), id);
+        Category updatedCategory = categoryRepository.findById(id)
+                .orElseThrow(() -> new RecordNotFoundException(CategoryMessage.CATEGORY_NAME_NOT_FOUND));
+        Category category = modelMapperService.forRequest().map(categoryRequest, Category.class);
+        category.setActive(updatedCategory.isActive());
+        category.setCreatedAt(updatedCategory.getCreatedAt());
+        category.setUpdatedAt(LocalDateTime.now());
+        category.setId(id);
+        category = categoryRepository.save(category);
+        return modelMapperService.forResponse().map(category, CategoryCreatedResponse.class);
+    }
+
+    @Override
     public CategoryCreatedResponse changeCategoryStatus(long id, boolean status) {
         categoryBusinessRules.checkIfCategoryHasActiveProducts(id);
         Category category = categoryRepository.findById(id)

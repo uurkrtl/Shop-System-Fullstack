@@ -13,6 +13,7 @@ import AdminProductUpdate from "../pages/admin/products/AdminProductUpdate.tsx";
 import AdminCategoryAdd from "../pages/admin/categories/AdminCategoryAdd.tsx";
 import AdminCategoryList from "../pages/admin/categories/AdminCategoryList.tsx";
 import AdminCategoryDetail from "../pages/admin/categories/AdminCategoryDetail.tsx";
+import AdminCategoryUpdate from "../pages/admin/categories/AdminCategoryUpdate.tsx";
 
 
 function Dashboard() {
@@ -33,6 +34,7 @@ function Dashboard() {
                     <Route path={'/admin/categories'} element={<AdminCategoryList/>}/>
                     <Route path={'/admin/categories/detail/:id'} element={<AdminCategoryDetail/>}/>
                     <Route path={'/admin/categories/add'} element={<AdminCategoryAdd/>}/>
+                    <Route path={'/admin/categories/update/:id'} element={<AdminCategoryUpdate/>}/>
                 </Routes>
             </div>
             <Footer/>

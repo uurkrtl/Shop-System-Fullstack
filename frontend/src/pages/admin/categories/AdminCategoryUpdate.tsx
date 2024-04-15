@@ -1,54 +1,35 @@
 import CategoryService from "../../../services/CategoryService.ts";
-import ProductService from "../../../services/ProductService.ts";
 import {useNavigate, useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
-import {Product} from "../../../types/Product.ts";
 import {Category} from "../../../types/Category.ts";
 import PageHeader from "../../../layouts/PageHeader.tsx";
-import ProductCommonFormFields from "../../../layouts/commonFormFields/ProductCommonFormFields.tsx";
+import CategoryCommonFormFields from "../../../layouts/commonFormFields/CategoryCommonFormFields.tsx";
 
-const productService = new ProductService();
 const categoryService = new CategoryService();
-function AdminProductUpdate() {
+function AdminCategoryUpdate() {
     const { id = '0' } = useParams();
-    const [product, setProduct] = useState<Product>({
+    const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState<string>('');
+    const [category, setCategory] = useState<Category>({
         id: 0,
         name: '',
         description: '',
-        ingredients: '',
-        price: 0,
         imageUrl: '',
-        readCount: 0,
-        unit: '',
-        categoryId: 0,
-        categoryName: '',
         active: true,
         createdAt: new Date(),
         updatedAt: new Date()
     });
 
-    const navigate = useNavigate();
-    const [errorMessage, setErrorMessage] = useState<string>('');
-    const [categories, setCategories] = useState<Category[]>([]);
-
-    useEffect(() => {
-        categoryService.getAllCategories().then((response) => {
-            setCategories(response.data);
-        });
-    });
-
     useEffect(() => {
         if (id) {
-            productService.getProductById(Number(id))
+            categoryService.getCategoryById(Number(id))
                 .then((response) => {
-                    setProduct(prevProduct => ({...prevProduct, ...response.data}));
+                    setCategory(prevCategory => ({...prevCategory, ...response.data}));
                 })
                 .catch(error => {
                     if (error.response) {
-                        console.log(error.response.data);
                         setErrorMessage(error.response.data.message);
                     } else {
-                        console.log('Etwas ist schief gelaufen:', error.message);
                         setErrorMessage('Etwas ist schief gelaufen: ' + error.message);
                     }
                 });
@@ -57,17 +38,14 @@ function AdminProductUpdate() {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        productService.updateProduct(Number(id), product)
-            .then(response => {
-                console.log(response)
-                navigate('/admin/products/detail/' + id)
+        categoryService.updateCategory(Number(id), category)
+            .then(() => {
+                navigate('/admin/categories/detail/' + id)
             })
             .catch(error => {
                 if (error.response) {
-                    console.log(error.response.data);
                     setErrorMessage(error.response.data.message);
                 } else {
-                    console.log('Etwas ist schief gelaufen:', error.message);
                     setErrorMessage('Etwas ist schief gelaufen: ' + error.message);
                 }
             });
@@ -75,12 +53,12 @@ function AdminProductUpdate() {
 
     return (
         <main className={'container'}>
-            <PageHeader title="Produktaktualisierung" pageType="product"/>
+            <PageHeader title="Kategorieaktualisierung" pageType="category"/>
 
             <div className="row g-5">
                 <div className="col-md-12 col-lg-12">
                     <form onSubmit={handleSubmit}>
-                        <ProductCommonFormFields product={product} setProduct={setProduct} categories={categories}/>
+                        <CategoryCommonFormFields category={category} setCategory={setCategory}/>
                         <button className="w-100 btn btn-primary btn-lg my-4" type="submit">Aktualisieren</button>
                     </form>
 
@@ -96,4 +74,4 @@ function AdminProductUpdate() {
     );
 }
 
-export default AdminProductUpdate;
+export default AdminCategoryUpdate;
