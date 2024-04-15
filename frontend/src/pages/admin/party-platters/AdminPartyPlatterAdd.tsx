@@ -5,7 +5,7 @@ import {PartyPlatter} from "../../../types/PartyPlatter.ts";
 import PageHeader from "../../../layouts/PageHeader.tsx";
 import PartyPlatterCommonFormFields from "../../../layouts/commonFormFields/PartyPlatterCommonFormFields.tsx";
 
-function PartyPlatterAdd() {
+function AdminPartyPlatterAdd() {
     const navigate = useNavigate();
     const partyPlatterService = new PartyPlatterService();
     const [errorMessage, setErrorMessage] = useState<string>('');
@@ -58,4 +58,4 @@ function PartyPlatterAdd() {
     );
 }
 
-export default PartyPlatterAdd;
+export default AdminPartyPlatterAdd;
