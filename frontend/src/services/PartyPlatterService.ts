@@ -18,6 +18,10 @@ export default class PartyPlatterService {
         return axios.post(`/api/party-platters`, partyPlatter)
     }
 
+    updatePartyPlatter(id: number, partyPlatter: PartyPlatter) {
+        return axios.put(`/api/party-platters/${id}`, partyPlatter)
+    }
+
     changePartyPlatterStatus(id: number, status: boolean) {
         return axios.put(`/api/party-platters/status/${id}?status=${status}`)
     }

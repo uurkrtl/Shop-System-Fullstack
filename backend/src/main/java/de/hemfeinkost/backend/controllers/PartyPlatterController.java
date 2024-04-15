@@ -38,6 +38,11 @@ public class PartyPlatterController {
         return partyPlatterService.addPartyPlatter(partyPlatterRequest);
     }
 
+    @PutMapping("/{id}")
+    public PartyPlatterCreatedResponse updatePartyPlatter(@PathVariable long id, @Valid @RequestBody PartyPlatterRequest partyPlatterRequest) {
+        return partyPlatterService.updatePartyPlatter(id, partyPlatterRequest);
+    }
+
     @PutMapping("/status/{id}")
     public PartyPlatterCreatedResponse changeProductStatus(@PathVariable long id, @RequestParam boolean status) {
         return partyPlatterService.changePartyPlatterStatus(id, status);
