@@ -1,14 +1,14 @@
-import CategoryService from "../../../services/CategoryService.ts";
+import PartyPlatterService from "../../../services/PartyPlatterService.ts";
 import React, {useEffect, useState} from "react";
-import {Category} from "../../../types/Category.ts";
+import {PartyPlatter} from "../../../types/PartyPlatter.ts";
 import PageHeader from "../../../layouts/PageHeader.tsx";
 import {Link} from "react-router-dom";
 
-const categoryService = new CategoryService();
-function AdminCategoryList() {
-    const [categories, setCategories] = useState<Category[]>([]);
+const partyPlatterService = new PartyPlatterService();
+function AdminPartyPlatterList() {
+    const [partyPlatters, setPartyPlatters] = useState<PartyPlatter[]>([]);
     const [filterByName, setFilterByName] = useState("");
-    const [categoryByStatus, setCategoryByStatus] = useState<Category[]>(categories);
+    const [partyPlatterByStatus, setPartyPlatterByStatus] = useState<PartyPlatter[]>(partyPlatters);
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState<string>('');
 
@@ -19,33 +19,33 @@ function AdminCategoryList() {
         return text;
     };
 
-    const filteredCategories = categoryByStatus.filter(
-        (category) =>
-            category.name.toLowerCase().includes(filterByName.toLowerCase())
+    const filteredCategories = partyPlatterByStatus.filter(
+        (partyPlatter) =>
+            partyPlatter.name.toLowerCase().includes(filterByName.toLowerCase())
     );
 
     const handleStatusSelect = (e: React.MouseEvent<HTMLInputElement>) => {
         const target = e.target as HTMLElement;
-        if (target.id === "activeCategories") {
-            setCategoryByStatus(categories.filter((category) => category.active));
-        } else if (target.id === "passiveCategories") {
-            setCategoryByStatus(categories.filter((category) => !category.active));
+        if (target.id === "activePartyPlatters") {
+            setPartyPlatterByStatus(partyPlatters.filter((partyPlatter) => partyPlatter.active));
+        } else if (target.id === "passivePartyPlatters") {
+            setPartyPlatterByStatus(partyPlatters.filter((partyPlatter) => !partyPlatter.active));
         } else {
-            setCategoryByStatus(categories);
+            setPartyPlatterByStatus(partyPlatters);
         }
     };
 
     useEffect(() => {
-        categoryService.getAllCategories().then((response) => {
-            setCategories(response.data);
-            setCategoryByStatus(response.data);
+        partyPlatterService.getAllPartyPlatters().then((response) => {
+            setPartyPlatters(response.data);
+            setPartyPlatterByStatus(response.data);
             setErrorMessage('');
             setLoading(false);
         }).catch((error) => {
-            setErrorMessage(`Fehler beim Abrufen von Kategorie: ${error.message}`);
+            setErrorMessage(`Fehler beim Abrufen von Platte: ${error.message}`);
             setLoading(false);
-            setCategories([]);
-            setCategoryByStatus([]);
+            setPartyPlatters([]);
+            setPartyPlatterByStatus([]);
         });
     }, []);
 
@@ -58,12 +58,13 @@ function AdminCategoryList() {
         </div>;
     }
 
+
     return (
         <div className={'container'}>
-            <PageHeader title="Kategorieliste" pageType="category"/>
+            <PageHeader title="Partyplattenliste" pageType="partyPlatter"/>
 
             <div className="d-flex justify-content-end">
-                <Link to={"/admin/categories/add"} className="btn btn-outline-secondary">Kategorie erstellen</Link>
+                <Link to={"/admin/party-platters/add"} className="btn btn-outline-secondary">Platte erstellen</Link>
             </div>
 
             <div className="input-group">
@@ -72,20 +73,20 @@ function AdminCategoryList() {
                 </div>
 
                 <div className="form-check form-check-inline mb-3">
-                    <input className="form-check-input" type="radio" name="inlineRadioOptions" id="allCategories"
-                           value="allCategories" onClick={handleStatusSelect} defaultChecked/>
-                    <label className="form-check-label" htmlFor="allCategories">Alle Kategorien</label>
+                    <input className="form-check-input" type="radio" name="inlineRadioOptions" id="allPlatters"
+                           value="allPlatters" onClick={handleStatusSelect} defaultChecked/>
+                    <label className="form-check-label" htmlFor="allPlatters">Alle Platten</label>
                 </div>
 
                 <div className="form-check form-check-inline mb-3">
-                    <input className="form-check-input" type="radio" name="inlineRadioOptions" id="activeCategories"
-                           value="activeCategories" onClick={handleStatusSelect}/>
-                    <label className="form-check-label" htmlFor="activeCategories">Aktive Kategorien</label>
+                    <input className="form-check-input" type="radio" name="inlineRadioOptions" id="activePartyPlatters"
+                           value="activePartyPlatters" onClick={handleStatusSelect}/>
+                    <label className="form-check-label" htmlFor="activePartyPlatters">Aktive Platten</label>
                 </div>
                 <div className="form-check form-check-inline mb-3">
-                    <input className="form-check-input" type="radio" name="inlineRadioOptions" id="passiveCategories"
-                           value="passiveCategories" onClick={handleStatusSelect}/>
-                    <label className="form-check-label" htmlFor="passiveCategories">Passive Kategorien</label>
+                    <input className="form-check-input" type="radio" name="inlineRadioOptions" id="passivePartyPlatters"
+                           value="passivePartyPlatters" onClick={handleStatusSelect}/>
+                    <label className="form-check-label" htmlFor="passivePartyPlatters">Passive Platten</label>
                 </div>
             </div>
 
@@ -105,6 +106,7 @@ function AdminCategoryList() {
                 <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Verkaufspreis</th>
                     <th scope="col">Detail</th>
                 </tr>
                 </thead>
@@ -114,6 +116,7 @@ function AdminCategoryList() {
                         <tr key={category.id}>
                             <td className={!category.active ? "text-danger" : "text-black"}>{truncateText(category.name, 40)}</td>
                             <td>{category.active ? "Aktiv" : "Passiv"}</td>
+                            <td>{category.price}</td>
                             <td><Link to={`/admin/categories/detail/${category.id}`}
                                       className="btn btn-outline-info">Detail</Link></td>
                         </tr>
@@ -132,4 +135,4 @@ function AdminCategoryList() {
     );
 }
 
-export default AdminCategoryList;
+export default AdminPartyPlatterList;
