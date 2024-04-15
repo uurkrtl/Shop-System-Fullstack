@@ -62,13 +62,21 @@ function AdminProductDetail() {
         }
     }, [id, navigate]);
 
-    if (loading) {
+    if (loading && !errorMessage) {
         return <div className={'container'}>
-            <div className={'spinner-border text-primary'}>
+            <div className={'spinner-border text-primary mt-3'}>
                 <span className={'visually-hidden'}></span>
             </div>
             <h5>Wird geledan...</h5>
         </div>;
+    }
+
+    if (errorMessage) {
+        return <div className="container">
+            <div className="alert alert-danger" role="alert">
+                {errorMessage}
+            </div>
+        </div>
     }
 
     return (
@@ -86,10 +94,10 @@ function AdminProductDetail() {
                         <tbody>
                         <tr>
                             <th scope="row">Verkaufspreis</th>
-                            <td>{product.price.toLocaleString('de-DE', {
+                            <td>{product.price ? product.price.toLocaleString('de-DE', {
                                 style: 'currency',
                                 currency: 'EUR'
-                            })}</td>
+                            }) : "-"}</td>
                         </tr>
                         <tr>
                             <th scope="row">Kategoriename</th>

@@ -10,7 +10,15 @@ export default class PartyPlatterService {
         return axios.get(`/api/party-platters/active`)
     }
 
+    getPartyPlatterById(id: number) {
+        return axios.get(`/api/party-platters/${id}`)
+    }
+
     addPartyPlatter(partyPlatter: PartyPlatter) {
         return axios.post(`/api/party-platters`, partyPlatter)
+    }
+
+    changePartyPlatterStatus(id: number, status: boolean) {
+        return axios.put(`/api/party-platters/status/${id}?status=${status}`)
     }
 }

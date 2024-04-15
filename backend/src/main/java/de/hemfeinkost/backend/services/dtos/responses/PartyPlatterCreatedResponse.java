@@ -13,6 +13,7 @@ public class PartyPlatterCreatedResponse {
     private long id;
     private String name;
     private String description;
+    private double price;
     private String size;
     private boolean isActive;
     private LocalDateTime createdAt;
