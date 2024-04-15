@@ -63,7 +63,7 @@ function Navbar() {
                                 <Link to={'/contact'} className="nav-link">Standort</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to={'/party-platter'} className="nav-link">Partyservice</Link>
+                                <Link to={'/party-platters'} className="nav-link">Partyservice</Link>
                             </li>
                         </ul>
                         <form className="d-flex" role="search">

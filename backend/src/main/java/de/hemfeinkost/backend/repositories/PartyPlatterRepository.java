@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface PartyPlatterRepository extends JpaRepository<PartyPlatter, Long> {
     List<PartyPlatter> findAllByIsActiveTrue();
+
+    boolean existsByName(String partyPlatterName);
 }

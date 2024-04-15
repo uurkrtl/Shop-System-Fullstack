@@ -14,6 +14,7 @@ import AdminCategoryAdd from "../pages/admin/categories/AdminCategoryAdd.tsx";
 import AdminCategoryList from "../pages/admin/categories/AdminCategoryList.tsx";
 import AdminCategoryDetail from "../pages/admin/categories/AdminCategoryDetail.tsx";
 import AdminCategoryUpdate from "../pages/admin/categories/AdminCategoryUpdate.tsx";
+import PartyPlatterAdd from "../pages/admin/party-platters/PartyPlatterAdd.tsx";
 
 
 function Dashboard() {
@@ -26,7 +27,6 @@ function Dashboard() {
                     <Route path={'/products/:categoryId?'} element={<ProductList/>}/>
                     <Route path={'/products/detail/:id'} element={<ProductDetail/>}/>
                     <Route path={'/contact'} element={<Contact/>}/>
-                    <Route path={'/party-platter'} element={<PartyPlatterList/>}/>
                     <Route path={'/admin/products'} element={<AdminProductList/>}/>
                     <Route path={'/admin/products/detail/:id'} element={<AdminProductDetail/>}/>
                     <Route path={'/admin/products/add'} element={<AdminProductAdd/>}/>
@@ -35,6 +35,8 @@ function Dashboard() {
                     <Route path={'/admin/categories/detail/:id'} element={<AdminCategoryDetail/>}/>
                     <Route path={'/admin/categories/add'} element={<AdminCategoryAdd/>}/>
                     <Route path={'/admin/categories/update/:id'} element={<AdminCategoryUpdate/>}/>
+                    <Route path={'/party-platters'} element={<PartyPlatterList/>}/>
+                    <Route path={'/admin/party-platters/add'} element={<PartyPlatterAdd/>}/>
                 </Routes>
             </div>
             <Footer/>
