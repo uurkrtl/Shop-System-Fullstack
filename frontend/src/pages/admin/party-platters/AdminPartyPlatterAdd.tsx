@@ -15,6 +15,7 @@ function AdminPartyPlatterAdd() {
         description: '',
         size: '',
         price: 0,
+        displayOrder: 0,
         active: true,
         createdAt: new Date(),
         updatedAt: new Date()

@@ -30,6 +30,9 @@ public class PartyPlatter {
     @Column(name = "price")
     private double price;
 
+    @Column(name = "display-order")
+    private int displayOrder;
+
     @Column(name = "active")
     private boolean isActive;
 

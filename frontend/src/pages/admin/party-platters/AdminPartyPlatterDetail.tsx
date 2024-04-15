@@ -17,6 +17,7 @@ function AdminPartyPlatterDetail() {
         description: '',
         size: '',
         price: 0,
+        displayOrder: 0,
         active: true,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -96,6 +97,10 @@ function AdminPartyPlatterDetail() {
                                 style: 'currency',
                                 currency: 'EUR'
                             }) : "-"}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Sortiernummer</th>
+                            <td>{partyPlatter.displayOrder}</td>
                         </tr>
                         <tr>
                             <th scope="row">Erstellung</th>

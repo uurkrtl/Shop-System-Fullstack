@@ -15,6 +15,7 @@ public class PartyPlatterCreatedResponse {
     private String description;
     private double price;
     private String size;
+    private int displayOrder;
     private boolean isActive;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

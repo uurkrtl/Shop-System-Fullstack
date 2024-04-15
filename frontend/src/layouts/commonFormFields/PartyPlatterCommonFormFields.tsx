@@ -5,28 +5,35 @@ function PartyPlatterCommonFormFields({ partyPlatter, setPartyPlatter }: Readonl
     return (
         <div className="row g-3">
 
-            <div className="col-sm-6">
+            <div className="col-sm-10">
                 <label htmlFor="name" className="form-label">Plattenname</label>
                 <input type="text" className="form-control" id="name"
                        placeholder="Schreiben Sie den Plattenname" value={partyPlatter.name}
                        onChange={(e) => setPartyPlatter({...partyPlatter, name: e.target.value})}/>
             </div>
 
-            <div className="col-sm-6">
+            <div className="col-sm-2">
+                <label htmlFor="displayOrder" className="form-label">Sortiernummer</label>
+                <input type="number" className="form-control" id="displayOrder"
+                       placeholder="Schreiben Sie den Sortiernummer" value={partyPlatter.displayOrder}
+                       onChange={(e) => setPartyPlatter({...partyPlatter, displayOrder: e.target.valueAsNumber})}/>
+            </div>
+
+            <div className="col-sm-12">
                 <label htmlFor="description" className="form-label">Beschreibung</label>
                 <input type="text" className="form-control" id="description"
                        placeholder="Schreiben Sie die Beschreibung" value={partyPlatter.description}
                        onChange={(e) => setPartyPlatter({...partyPlatter, description: e.target.value})}/>
             </div>
 
-            <div className="col-sm-6">
+            <div className="col-sm-8">
                 <label htmlFor="size" className="form-label">Größe</label>
                 <input type="text" className="form-control" id="size"
                        placeholder="Schreiben Sie die Größe" value={partyPlatter.size}
                        onChange={(e) => setPartyPlatter({...partyPlatter, size: e.target.value})}/>
             </div>
 
-            <div className="col-sm-6">
+            <div className="col-sm-4">
                 <label htmlFor="price" className="form-label">Verkaufspreis</label>
                 <input type="number" step="0.01" className="form-control" id="price"
                        placeholder="Schreiben Sie den Verkaufspreis" value={partyPlatter.price}

@@ -14,7 +14,7 @@ function CategoryCommonFormFields({ category, setCategory }: Readonly<{ category
             <div className="col-sm-2">
                 <label htmlFor="displayOrder" className="form-label">Sortiernummer</label>
                 <input type="number" className="form-control" id="displayOrder"
-                       placeholder="Schreiben Sie den Kategoriename" value={category.displayOrder}
+                       placeholder="Schreiben Sie den Sortiernummer" value={category.displayOrder}
                        onChange={(e) => setCategory({...category, displayOrder: e.target.valueAsNumber})}/>
             </div>
 
