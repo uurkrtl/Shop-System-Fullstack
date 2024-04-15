@@ -57,6 +57,20 @@ public class PartyPlatterManager implements PartyPlatterService {
     }
 
     @Override
+    public PartyPlatterCreatedResponse updatePartyPlatter(long id, PartyPlatterRequest partyPlatterRequest) {
+        partyPlatterBusinessRules.checkIfCategoryNameExists(partyPlatterRequest.getName(), id);
+        PartyPlatter updatedPartyPlatter = partyPlatterRepository.findById(id)
+                .orElseThrow(() -> new RecordNotFoundException(PartyPlatterMessage.PARTY_PLATTER_NOT_FOUND));
+        PartyPlatter partyPlatter = modelMapperService.forRequest().map(partyPlatterRequest, PartyPlatter.class);
+        partyPlatter.setCreatedAt(updatedPartyPlatter.getCreatedAt());
+        partyPlatter.setUpdatedAt(LocalDateTime.now());
+        partyPlatter.setId(id);
+        partyPlatter.setActive(updatedPartyPlatter.isActive());
+        partyPlatter = partyPlatterRepository.save(partyPlatter);
+        return modelMapperService.forResponse().map(partyPlatter, PartyPlatterCreatedResponse.class);
+    }
+
+    @Override
     public PartyPlatterCreatedResponse changePartyPlatterStatus(long id, boolean status) {
         PartyPlatter partyPlatter = partyPlatterRepository.findById(id)
                 .orElseThrow(() -> new RecordNotFoundException(PartyPlatterMessage.PARTY_PLATTER_NOT_FOUND));

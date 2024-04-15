@@ -11,5 +11,6 @@ public interface PartyPlatterService {
     List<PartyPlatterGetAllResponse> getActivePartyPlatters();
     PartyPlatterCreatedResponse getPartyPlatterById(long id);
     PartyPlatterCreatedResponse addPartyPlatter(PartyPlatterRequest partyPlatter);
+    PartyPlatterCreatedResponse updatePartyPlatter(long id, PartyPlatterRequest partyPlatter);
     PartyPlatterCreatedResponse changePartyPlatterStatus(long id, boolean status);
 }
