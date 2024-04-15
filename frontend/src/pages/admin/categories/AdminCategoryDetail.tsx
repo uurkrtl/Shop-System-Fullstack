@@ -3,10 +3,10 @@ import {Link, useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {Category} from "../../../types/Category.ts";
 
-
 const categoryService = new CategoryService();
 function AdminCategoryDetail() {
     const { id = '0' } = useParams();
+    const [loading, setLoading] = useState(true);
     const [category, setCategory] = useState<Category>({
         id: 0,
         name: '',
@@ -20,13 +20,12 @@ function AdminCategoryDetail() {
     const navigate = useNavigate();
     const [successMessage, setSuccessMessage] = useState<string>('');
     const [errorMessage, setErrorMessage] = useState<string>('');
-    const [loading, setLoading] = useState(true);
 
     const handleStatusChange = (status: boolean) => {
         categoryService.changeCategoryStatus(Number(id), status)
             .then(() => {
-                setSuccessMessage(successMessage + ' Der Kategoriestatus wurde erfolgreich geändert.')
                 setErrorMessage('')
+                setSuccessMessage(successMessage + ' Der Kategoriestatus wurde erfolgreich geändert.')
                 setCategory({
                     ...category,
                     active: status
