@@ -7,9 +7,10 @@ const categoryService = new CategoryService();
 function AdminCategoryDetail() {
     const { id = '0' } = useParams();
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
     const [category, setCategory] = useState<Category>({
-        id: 0,
         name: '',
+        id: 0,
         description: '',
         imageUrl: '',
         active: true,
@@ -17,7 +18,6 @@ function AdminCategoryDetail() {
         updatedAt: new Date()
     });
 
-    const navigate = useNavigate();
     const [successMessage, setSuccessMessage] = useState<string>('');
     const [errorMessage, setErrorMessage] = useState<string>('');
 
