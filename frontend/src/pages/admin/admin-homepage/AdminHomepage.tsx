@@ -6,7 +6,7 @@ function AdminHomepage() {
         <main>
             <div className="container marketing">
 
-                <div className="row mt-3 mb-3">
+                <div className="row mt-3 mb-1">
                     <div className="col-lg-3">
                         <Link to={`/admin/products`} className="nav-link active text-decoration-none" aria-current="page">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="140" height="140">

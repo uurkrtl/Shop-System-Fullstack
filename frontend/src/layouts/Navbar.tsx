@@ -1,11 +1,33 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {Category} from "../types/Category.ts";
 import CategoryService from "../services/CategoryService.ts";
+import {User} from "../types/User.ts";
+import UserService from "../services/UserService.ts";
 
 const categoryService = new CategoryService();
 function Navbar() {
     const [categories, setCategories] = useState<Category[]>([]);
+    const userService = new UserService();
+    const [user, setUser] = useState<User | null>(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        userService.getLoggedInUser()
+            .then((response) => {
+                setUser(response.data);
+            })
+            .catch(() => {
+                setUser(null);
+            });
+    }, []);
+
+    function logout() {
+        userService.logout()
+            .then(() => navigate('/login'))
+            .catch((error) => console.error('Etwas ist schief gelaufen:', error))
+            .finally(() => setUser(null));
+    }
 
     useEffect(() => {
         categoryService.getAllCategories().then((response) => {
@@ -29,7 +51,7 @@ function Navbar() {
                             </svg>
                         </Link>
                     </div>
-                    <Link to={'/'} className="navbar-brand">Hem Feinkost</Link>
+                    <Link to={'/'} className="navbar-brand text-decoration-none">Hem Feinkost</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
                             aria-label="Toggle navigation">
@@ -38,7 +60,7 @@ function Navbar() {
                     <div className="collapse navbar-collapse" id="navbarCollapse">
                         <ul className="navbar-nav me-auto mb-2 mb-md-0">
                             <li className="nav-item">
-                                <Link to={'/'} className="nav-link active" aria-current="page">Startseite</Link>
+                                <Link to={'/'} className="nav-link active text-decoration-none" aria-current="page">Startseite</Link>
                             </li>
                             <li className="nav-item dropdown">
                                 <Link to={'/'} className="nav-link dropdown-toggle text-decoration-none"
@@ -66,11 +88,32 @@ function Navbar() {
                                 <Link to={'/party-platters'} className="nav-link">Partyservice</Link>
                             </li>
                         </ul>
-                        <form className="d-flex" role="search">
-                            <input className="form-control me-2" type="search" placeholder="Search"
-                                   aria-label="Search"/>
-                            <button className="btn btn-outline-success" type="submit">Search</button>
-                        </form>
+                        {user && (
+                            <li className="nav-item dropdown">
+                                <Link to={'/'} className="dropdown-toggle text-decoration-none"
+                                      data-bs-toggle="dropdown"
+                                      aria-expanded="false">
+                                    <img height="38" width="38" className={'rounded-circle'}
+                                         src={user.imageUrl}
+                                         alt="user information">
+                                    </img>
+                                </Link>
+                                <ul className="dropdown-menu dropdown-menu-end">
+                                    <li><Link to={`/admin`}
+                                              className="dropdown-item text-decoration-none">{`Administrationsmenü`}</Link>
+                                    </li>
+                                    <li><Link to={`/users/detail/${user.id}`}
+                                              className="dropdown-item text-decoration-none">{`Mein Konto (${user.firstName} ${user.lastName})`}</Link>
+                                    </li>
+                                    <li>
+                                        <button onClick={logout}
+                                                className="dropdown-item text-decoration-none text-danger">Abmelden
+                                        </button>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        )}
                     </div>
                 </div>
             </nav>

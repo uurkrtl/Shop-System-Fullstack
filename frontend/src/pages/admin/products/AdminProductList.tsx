@@ -19,7 +19,7 @@ function AdminProductList() {
     const [errorMessage, setErrorMessage] = useState<string>('');
 
     useEffect(() => {
-        categoryService.getAllCategories().then((response) => {
+        categoryService.getActiveCategories().then((response) => {
             setCategories(response.data);
         });
     });
@@ -76,7 +76,6 @@ function AdminProductList() {
                 <Link to={"/admin/products/add"} className="btn btn-outline-secondary">Produkt erstellen</Link>
             </div>
 
-            <div className="input-group">
                 <div className="form-check-inline">
                     <p className="form-check-label mx-1">Kategorie wählen:</p>
                 </div>
@@ -96,7 +95,6 @@ function AdminProductList() {
                         </div>
                     );
                 })}
-            </div>
 
             <div className="input-group mb-2">
                 <span className="input-group-text" id="basic-addon3">Schreiben einen Namensfilter</span>

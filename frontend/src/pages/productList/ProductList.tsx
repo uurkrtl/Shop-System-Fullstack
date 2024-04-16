@@ -64,8 +64,8 @@ function ProductList() {
             {categories.map((category) => {
                 return (
                     <div className="container" key={category.id}>
-                        <hr className="featurette-divider"/>
-                        <section className="py-3 text-center container">
+
+                        <section className="py3 text-center shadow-none mt-3">
                             <div className="row py-lg-1">
                                 <div className="col-lg-8 col-md-8 mx-auto">
                                     <h1 className="fw-light"><b>{category.name}</b></h1>
@@ -74,7 +74,7 @@ function ProductList() {
                             </div>
                         </section>
 
-                        <div className="album py-2 ">
+                        <div className="album py-1 ">
                             <div className="container">
 
                                 <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
@@ -83,8 +83,8 @@ function ProductList() {
                                         return (
                                             <Link to={`/products/detail/${product.id}`} className="text-decoration-none" key={product.id}>
                                                 <div className="col">
-                                                    <div className="card shadow-sm mt-3">
-                                                        <img className="bd-placeholder-img card-img-top thumb-img" width="100%"
+                                                    <div className="card shadow-sm mt-1">
+                                                        <img className="bd-placeholder-img card-img-top" width="100%"
                                                              height="250" alt={product.name} src={product.imageUrl}/>
                                                         <div className="card-body" style={{ height: '130px', overflow: 'hidden' }}>
                                                             <p className="card-title">{truncateText(product.name, 70)}</p>
