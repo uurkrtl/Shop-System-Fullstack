@@ -19,7 +19,7 @@ function Dashboard() {
                     <Route path={'/products/:categoryId?'} element={<ProductList/>}/>
                     <Route path={'/products/detail/:id'} element={<ProductDetail/>}/>
                     <Route path={'/party-platters'} element={<PartyPlatterList/>}/>
-                    <Route path={'/contact'} element={<Contact/>}/>
+                    <Route path={'contact'} element={<Contact/>}/>
                     <Route path={'/login'} element={<Login/>}/>
                     <Route path={'*'} element={<PageNotFound404/>}/>
                 </Routes>
