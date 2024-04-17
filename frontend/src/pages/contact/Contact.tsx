@@ -5,7 +5,7 @@ function Contact() {
     return (
         <main>
             <div className="container marketing">
-                <h1 className="pb-3 pt-4 border-bottom text-center">Kontakt</h1>
+                <h1 className="pb-3 pt-3 border-bottom text-center">Kontakt</h1>
                 <div className="row mt-4">
                     <div className="col-lg-4">
                         <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor"

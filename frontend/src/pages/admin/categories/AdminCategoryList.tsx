@@ -66,7 +66,6 @@ function AdminCategoryList() {
                 <Link to={"/admin/categories/add"} className="btn btn-outline-secondary">Kategorie erstellen</Link>
             </div>
 
-            <div className="input-group">
                 <div className="form-check-inline">
                     <p className="form-check-label mx-1">Status auswählen:</p>
                 </div>
@@ -87,7 +86,6 @@ function AdminCategoryList() {
                            value="passiveCategories" onClick={handleStatusSelect}/>
                     <label className="form-check-label" htmlFor="passiveCategories">Passive Kategorien</label>
                 </div>
-            </div>
 
             <div className="input-group mb-2">
                 <span className="input-group-text" id="basic-addon3">Schreiben einen Namensfilter</span>

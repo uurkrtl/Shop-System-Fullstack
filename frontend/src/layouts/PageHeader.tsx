@@ -51,7 +51,7 @@ function PageHeader({ title, pageType }: Readonly<{ title: string, pageType: str
     }
 
     return (
-        <div className="py-4 text-center">
+        <div className="py-1 text-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" fill={fill}
                  className={className} viewBox={viewBox}>
                 <path fillRule={fillRule1} d={imagePath1}/>

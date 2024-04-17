@@ -64,9 +64,9 @@ function ProductDetail() {
 
     return (
         <div className="container">
-            <div className="row flex-lg-row-reverse align-items-center g-5 py-2">
+            <div className="row flex-lg-row-reverse align-items-center g-5 py-1">
 
-                <div className="container mt-5">
+                <div className="mt-5">
                     <nav aria-label="breadcrumb">
                         <ol className="breadcrumb breadcrumb-chevron p-3 rounded-3">
                             <li className="breadcrumb-item">

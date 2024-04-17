@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 function Footer() {
     return (
         <div className="mx-5">
-            <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 mt-5 border-top">
+            <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 mt-2 border-top">
                 <div className="col-md-4 mt-3 d-flex align-items-center">
                     <Link to={`/`} className="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" height="34" width="34">
