@@ -29,8 +29,8 @@ public class SecurityConfig {
                                 .sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                //.requestMatchers(HttpMethod.POST, "/api/users/register").hasRole(UserRole.ADMIN.name())
-                                .requestMatchers(HttpMethod.GET, "/api/users").hasRole(UserRole.ADMIN.name())
+                                .requestMatchers(HttpMethod.POST, "/api/users/register").hasRole(UserRole.ADMIN.name())
+                                .requestMatchers(HttpMethod.GET, "/api/users").hasAnyRole(UserRole.ADMIN.name(), UserRole.USER.name())
                                 .requestMatchers(RegexRequestMatcher.regexMatcher("^(?!/api).*$")).permitAll()
                                 .anyRequest().permitAll()
                 )

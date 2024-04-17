@@ -122,12 +122,9 @@ function AdminNavbar() {
                                         </img>
                                     </Link>
                                     <ul className="dropdown-menu dropdown-menu-end">
-                                        <li><Link to={`/users/detail/${user.id}`}
-                                                  className="dropdown-item text-decoration-none">{`Mein Konto (${user.firstName} ${user.lastName})`}</Link>
-                                        </li>
                                         <li>
                                             <button onClick={logout}
-                                                    className="dropdown-item text-decoration-none text-danger">Abmelden
+                                                    className="dropdown-item text-decoration-none text-danger">{`Abmelden (${user.firstName} ${user.lastName})`}
                                             </button>
                                         </li>
                                     </ul>

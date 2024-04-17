@@ -14,6 +14,10 @@ import AdminPartyPlatterAdd from "../pages/admin/party-platters/AdminPartyPlatte
 import AdminPartyPlatterUpdate from "../pages/admin/party-platters/AdminPartyPlatterUpdate.tsx";
 import Footer from "./Footer.tsx";
 import AdminNavbar from "./AdminNavbar.tsx";
+import AdminUserAdd from "../pages/admin/users/AdminUserAdd.tsx";
+import AdminUserList from "../pages/admin/users/AdminUserList.tsx";
+import AdminUserDetail from "../pages/admin/users/AdminUserDetail.tsx";
+import AdminUserUpdate from "../pages/admin/users/AdminUserUpdate.tsx";
 
 
 function AdminDashboard() {
@@ -35,6 +39,10 @@ function AdminDashboard() {
                     <Route path={'/admin/party-platters/detail/:id'} element={<AdminPartyPlatterDetail/>}/>
                     <Route path={'/admin/party-platters/add'} element={<AdminPartyPlatterAdd/>}/>
                     <Route path={'/admin/party-platters/update/:id'} element={<AdminPartyPlatterUpdate/>}/>
+                    <Route path={'/admin/users'} element={<AdminUserList/>}/>
+                    <Route path={'/admin/users/detail/:id'} element={<AdminUserDetail/>}/>
+                    <Route path={'/admin/users/add'} element={<AdminUserAdd/>}/>
+                    <Route path={'/admin/users/update/:id'} element={<AdminUserUpdate/>}/>
                 </Routes>
             </div>
             <Footer/>
