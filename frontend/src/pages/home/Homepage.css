@@ -14,7 +14,7 @@ body {
 
 /* Carousel base class */
 .carousel {
-    margin-bottom: 2.5rem;
+    margin-bottom: 4rem;
 }
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
@@ -24,7 +24,15 @@ body {
 
 /* Declare heights because of positioning of img element */
 .carousel-item {
-    max-height: 24rem;
+    height: 30rem; /* Updated height */
+    min-height: 30rem;
+}
+
+.d-block {
+    object-fit: cover;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
 }
 
 
