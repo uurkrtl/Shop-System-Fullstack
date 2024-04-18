@@ -5,18 +5,14 @@ function Homepage() {
     return (
         <main>
 
-            <div id="myCarousel" className="carousel slide mb-6" data-bs-ride="carousel">
-                <div className="carousel-indicators">
-                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" className="active"
-                            aria-label="Slide 1"></button>
-                </div>
+            <div id="myCarousel" className="carousel slide mb-3 mt-5" data-bs-ride="carousel">
+
                 <div className="carousel-inner">
                     <div className="carousel-item active">
                         <img
-                            src="https://i.ibb.co/jhZdSzZ/Whats-App-Image-2024-04-13-at-20-05-22.jpg"
-                            className="d-block w-100" alt="Hem Feinkost"/>
-                        <div className="container">
-                        </div>
+                            src="https://i.ibb.co/DwVtdmz/geschaft2.jpg"
+                            className="d-block" alt="Hem Feinkost"/>
+
                     </div>
                 </div>
             </div>
@@ -26,7 +22,7 @@ function Homepage() {
                 <div className="row">
                     <div className="col-lg-4">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24.001" className="bd-placeholder-img"
-                             width="140" height="140">
+                             width="70" height="70">
                             <path fill="none" d="M0 0h24v24.001H0z"></path>
                             <g fill="#d45985" className="color757575 svgShape">
                                 <path
@@ -44,7 +40,7 @@ function Homepage() {
                     </div>
 
                     <div className="col-lg-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="bd-placeholder-img" width="140" height="140"
+                        <svg xmlns="http://www.w3.org/2000/svg" className="bd-placeholder-img" width="70" height="70"
                              fill="none" viewBox="0 0 96 96"
                              id="room-service">
                             <path fill="#FFF1CF" stroke="#FF8A00" strokeLinecap="round" strokeWidth="5"
@@ -70,7 +66,8 @@ function Homepage() {
                     </div>
 
                     <div className="col-lg-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" className="bd-placeholder-img" width="140" height="140">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" className="bd-placeholder-img"
+                             width="70" height="70">
                             <path fill="#e3e2e1"
                                   d="M54.01 58.74C54.01 61.65 44.15 64 32 64c-12.15 0-22.01-2.35-22.01-5.26 0-2.6 7.9-4.74 18.26-5.18h7.5c10.37.44 18.26 2.58 18.26 5.18z"></path>
                             <path fill="#e82327"
@@ -78,7 +75,8 @@ function Homepage() {
                         </svg>
 
                         <h2 className="fw-normal">Unser Standort</h2>
-                        <p>Besuchen Sie uns in Kerpen! Tauchen Sie ein in unsere exquisite Auswahl an Delikatessen und erleben Sie Qualität und Geschmack in einem Ambiente, das zum Verweilen einlädt.</p>
+                        <p>Besuchen Sie uns in Kerpen! Tauchen Sie ein in unsere exquisite Auswahl an Delikatessen und
+                            erleben Sie Qualität und Geschmack in einem Ambiente, das zum Verweilen einlädt.</p>
                         <p><Link to={'/contact'} className="btn btn-secondary mb-2">Details anzeigen »</Link></p>
                     </div>
                 </div>
@@ -89,12 +87,14 @@ function Homepage() {
                     <div className="col-md-7">
                         <h2 className="featurette-heading fw-normal lh-1">Planen Sie Feier? <span
                             className="text-body-secondary">Sie sind bei uns genau richtig.</span></h2>
-                        <p className="lead">Planen Sie eine besondere Feier oder Veranstaltung und suchen nach kulinarischen Köstlichkeiten,
-                        die Ihre Gäste begeistern werden? Dann sind Sie bei uns genau richtig!</p>
+                        <p className="lead">Planen Sie eine besondere Feier oder Veranstaltung und suchen nach
+                            kulinarischen Köstlichkeiten,
+                            die Ihre Gäste begeistern werden? Dann sind Sie bei uns genau richtig!</p>
                         <Link to={'/party-platters'} className="btn btn-secondary mb-3">Mehr erfahren »</Link>
                     </div>
                     <div className="col-md-5">
-                        <img src="https://i.ibb.co/tMJkMwS/placeholder-img-1.jpg" width="500" height="500" alt="Party service"
+                        <img src="https://i.ibb.co/tMJkMwS/placeholder-img-1.jpg" width="500" height="500"
+                             alt="Party service"
                              className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"/>
                     </div>
                 </div>
@@ -105,17 +105,19 @@ function Homepage() {
                     <div className="col-md-7 order-md-2">
                         <h2 className="featurette-heading fw-normal lh-1">Entdecken Sie <span
                             className="text-body-secondary">unsere erlesenen Feinkostprodukte.</span></h2>
-                        <p className="lead">Unser Sortiment an Feinkostprodukten ist eine Hommage an die Kunst des guten Geschmacks.
+                        <p className="lead">Unser Sortiment an Feinkostprodukten ist eine Hommage an die Kunst des guten
+                            Geschmacks.
                             Bei uns finden Sie sorgfältig ausgewählte Produkte, die Ihre Sinne verzaubern werden.</p>
                         <Link to={'/products'} className="btn btn-secondary mb-3">Unsere Produkte »</Link>
                     </div>
                     <div className="col-md-5 order-md-1">
-                        <img src="https://i.ibb.co/hK2FHHk/unsere-produkte-1.jpg" width="500" height="500" alt="Unsere Produkte"
+                        <img src="https://i.ibb.co/hK2FHHk/unsere-produkte-1.jpg" width="500" height="500"
+                             alt="Unsere Produkte"
                              className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"/>
                     </div>
                 </div>
 
-                </div>
+            </div>
 
         </main>
     );
