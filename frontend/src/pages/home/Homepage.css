@@ -24,12 +24,12 @@ body {
 
 /* Declare heights because of positioning of img element */
 .carousel-item {
-    height: 30rem; /* Updated height */
+    height: 30rem;
     min-height: 30rem;
 }
 
-.d-block {
-    object-fit: cover;
+.carousel-item img {
+    object-fit: fill;
     overflow: hidden;
     width: 100%;
     height: 100%;
