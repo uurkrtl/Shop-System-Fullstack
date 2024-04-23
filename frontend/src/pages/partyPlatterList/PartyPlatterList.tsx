@@ -31,6 +31,39 @@ function PartyPlatterList() {
 
     return (
         <div className="container">
+
+            <div id="carouselExampleIndicators" className="carousel slide">
+                <div className="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                            className="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                </div>
+                <div className="carousel-inner">
+                    <div className="carousel-item active">
+                        <img src="https://i.ibb.co/v42RxBP/IMG-7070.jpg" className="d-block w-100" alt="party service"/>
+                    </div>
+                    <div className="carousel-item">
+                        <img src="https://i.ibb.co/4Yy6jHq/IMG-7069.jpg" className="d-block w-100" alt="party service"/>
+                    </div>
+                    <div className="carousel-item">
+                        <img src="https://i.ibb.co/Gx6YJxg/IMG-6738.jpg" className="d-block w-100" alt="party service"/>
+                    </div>
+                </div>
+                <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="prev">
+                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span className="visually-hidden">Previous</span>
+                </button>
+                <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="next">
+                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span className="visually-hidden">Next</span>
+                </button>
+            </div>
+
             <header>
                 <div className="pricing-header p-3 pb-md-4 mx-auto text-center">
                     <h1 className="display-4 fw-normal text-body-emphasis">Ihr Partyspezialist</h1>
@@ -41,8 +74,10 @@ function PartyPlatterList() {
                         Mit viele Liebe zum Detail und frischen Zutaten bereiten wir für Sie köstliche Speisen zu.<br/>
                         Mit uns haben Sie die Spezialisten für Ihr mediterranes Catering und PartyService an der
                         Bergstraße und Umgebung.<br/>
-                        Wir stellen Ihnen geschmackvolle Feinkostplatten mit Produkten aus unserem Sortiment zusammen.<br/>
-                        Sie können zwischen unseren bereits fertig kreierten Platten wählen oder lassen sich Ihre Feinkostplatten noch Ihren Wünschen zusammenstellen.
+                        Wir stellen Ihnen geschmackvolle Feinkostplatten mit Produkten aus unserem Sortiment
+                        zusammen.<br/>
+                        Sie können zwischen unseren bereits fertig kreierten Platten wählen oder lassen sich Ihre
+                        Feinkostplatten noch Ihren Wünschen zusammenstellen.
                     </p>
                 </div>
             </header>
@@ -67,7 +102,8 @@ function PartyPlatterList() {
                                             <li>{partyPlatter.description}</li>
                                             <li>{partyPlatter.size}</li>
                                         </ul>
-                                        <Link to={'/contact'} type="button" className="w-100 btn btn-lg btn-primary">Kontaktiere uns
+                                        <Link to={'/contact'} type="button" className="w-100 btn btn-lg btn-primary">Kontaktiere
+                                            uns
                                         </Link>
                                     </div>
                                     {errorMessage && (

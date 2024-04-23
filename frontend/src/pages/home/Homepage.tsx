@@ -10,7 +10,7 @@ function Homepage() {
                 <div className="carousel-inner">
                     <div className="carousel-item active">
                         <img
-                            src="https://i.ibb.co/DwVtdmz/geschaft2.jpg"
+                            src="https://i.ibb.co/SnB3b3c/home-5749x3833-px.jpg"
                             className="d-block" alt="Hem Feinkost"/>
 
                     </div>
