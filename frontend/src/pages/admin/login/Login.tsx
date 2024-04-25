@@ -40,7 +40,7 @@ function Login() {
         <div className="body d-flex align-items-center py-4 bg-body-tertiary">
             <main className="form-signin w-100 m-auto">
                 <form onSubmit={handleSubmit}>
-                    <img className="mb-4" src="/hem_logo.png" alt="" width="72" height="72"/>
+                    <img className="mb-4" src="/hem_logo.png" alt="" width="128" height="128"/>
                     <h1 className="h3 mb-3 fw-normal">Bitte einloggen</h1>
 
                     <div className="form-floating">
