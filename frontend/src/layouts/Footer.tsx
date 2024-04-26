@@ -13,7 +13,7 @@ function Footer() {
                 </div>
 
                 <div className="col-md-4 mt-3 d-flex justify-content-center">
-                    <Link to={`https://www.linkedin.com/in/ugurkartal/`} target="_blank"
+                    <Link to={`http://ugurkartal.de/`} target="_blank"
                           className="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
                         <span className="mb-3 mb-md-0 text-muted">Designed by Ugur Kartal</span>
                     </Link>
