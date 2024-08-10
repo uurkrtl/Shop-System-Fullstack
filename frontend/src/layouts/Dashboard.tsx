@@ -8,6 +8,7 @@ import Contact from "../pages/contact/Contact.tsx";
 import PartyPlatterList from "../pages/partyPlatterList/PartyPlatterList.tsx";
 import PageNotFound404 from "../pages/not-found-404/PageNotFound404.tsx";
 import Login from "../pages/admin/login/Login.tsx";
+import Imprint from "../pages/Imprint.tsx";
 
 function Dashboard() {
     return (
@@ -20,6 +21,7 @@ function Dashboard() {
                     <Route path={'/products/detail/:id'} element={<ProductDetail/>}/>
                     <Route path={'/party-platters'} element={<PartyPlatterList/>}/>
                     <Route path={'/contact'} element={<Contact/>}/>
+                    <Route path={'/imprint'} element={<Imprint/>}/>
                     <Route path={'/login'} element={<Login/>}/>
                     <Route path={'*'} element={<PageNotFound404/>}/>
                 </Routes>
